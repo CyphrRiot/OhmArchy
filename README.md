@@ -42,12 +42,17 @@ Turn a fresh Arch installation into a fully-configured, beautiful, and modern de
 
 ## Installation
 
-### Fresh Arch Installation
+### Method 1: Direct Install (Recommended)
 ```bash
-curl -fsSL https://raw.githubusercontent.com/CyphrRiot/OhmArchy/main/boot.sh | bash
+wget -qO- https://raw.githubusercontent.com/CyphrRiot/OhmArchy/master/install.sh | bash
 ```
 
-### Existing Arch System
+### Method 2: Boot Script (Fresh Arch Systems)
+```bash
+curl -fsSL https://raw.githubusercontent.com/CyphrRiot/OhmArchy/master/boot.sh | bash
+```
+
+### Method 3: Manual Clone
 ```bash
 git clone https://github.com/CyphrRiot/OhmArchy.git ~/.local/share/omarchy
 ~/.local/share/omarchy/install.sh

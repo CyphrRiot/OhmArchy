@@ -31,7 +31,7 @@ Turn a fresh Arch installation into a fully-configured, beautiful, and modern de
 
 ### 🎨 **Text & Media**
 - **Apostrophe** - Default for text/markdown files
-- **Evince** - Default PDF viewer
+- **Papers** - Default PDF viewer (GNOME's modern document viewer)
 - **Better waybar network** - nmtui instead of impala
 - **Screenshot tools** - grim/slurp/hyprshot integration
 

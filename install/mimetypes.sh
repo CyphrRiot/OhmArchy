@@ -8,8 +8,8 @@ xdg-mime default imv.desktop image/webp
 xdg-mime default imv.desktop image/bmp
 xdg-mime default imv.desktop image/tiff
 
-# Open PDFs with Evince
-xdg-mime default org.gnome.Evince.desktop application/pdf
+# Open PDFs with Papers
+xdg-mime default org.gnome.Papers.desktop application/pdf
 
 # Use Brave as the default browser
 xdg-settings set default-web-browser brave-browser.desktop

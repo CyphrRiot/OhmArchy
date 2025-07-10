@@ -8,13 +8,19 @@ xdg-mime default imv.desktop image/webp
 xdg-mime default imv.desktop image/bmp
 xdg-mime default imv.desktop image/tiff
 
-# Open PDFs with the Document Viewer
-xdg-mime default org.gnome.Evince.desktop application/pdf
+# Open PDFs with Gnome Papers
+xdg-mime default org.gnome.Papers.desktop application/pdf
 
-# Use Chromium as the default browser
-xdg-settings set default-web-browser chromium.desktop
-xdg-mime default chromium.desktop x-scheme-handler/http
-xdg-mime default chromium.desktop x-scheme-handler/https
+# Use Brave as the default browser
+xdg-settings set default-web-browser brave-browser.desktop
+xdg-mime default brave-browser.desktop x-scheme-handler/http
+xdg-mime default brave-browser.desktop x-scheme-handler/https
+
+# Open text and markdown files with Apostrophe
+xdg-mime default org.gnome.gitlab.somas.Apostrophe.desktop text/plain
+xdg-mime default org.gnome.gitlab.somas.Apostrophe.desktop text/markdown
+xdg-mime default org.gnome.gitlab.somas.Apostrophe.desktop text/x-markdown
+xdg-mime default org.gnome.gitlab.somas.Apostrophe.desktop application/x-markdown
 
 # Open video files with mpv
 xdg-mime default mpv.desktop video/mp4

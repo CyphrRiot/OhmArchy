@@ -1,0 +1,5 @@
+/* CypherRiot theme for Waybar */
+/* Based on your current customized waybar configuration */
+
+/* Import your existing waybar styles but with CypherRiot branding */
+@import url('/home/grendel/.config/waybar/style.css');

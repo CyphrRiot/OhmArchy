@@ -13,6 +13,7 @@ Turn a fresh Arch installation into a fully-configured, beautiful, and modern de
 - **Shell:** Fish as default (replaces Bash)
 - **Theme:** CypherRiot as default (replaces Tokyo Night)
 - **Code Editor:** Added Zed alongside Neovim
+- **Backup Tool:** Latest migrate binary for system backup/restore
 
 ### 📱 **Web Applications**
 - **Proton Mail** (SUPER+E) - https://mail.proton.me/u/11/inbox
@@ -64,6 +65,20 @@ omarchy-update
 ```
 
 This will pull the latest changes from the OhmArchy repository and update your system packages.
+
+## Backup & Restore
+OhmArchy includes the latest migration tool for easy backup and restore:
+
+```bash
+migrate
+```
+
+**Note:** `migrate` is a TUI (Text User Interface) with **no command-line options**. Simply run the command and use the interactive menu to:
+- Create backups of your system configuration
+- Restore from previous backups  
+- Migrate settings between installations
+
+The migrate tool automatically gets the latest version during installation from the [CypherRiot/Migrate](https://github.com/CyphrRiot/Migrate) repository.
 
 ## Themes
 OhmArchy includes several themes with CypherRiot as the default:

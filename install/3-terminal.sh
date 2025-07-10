@@ -8,5 +8,8 @@ yay -S --noconfirm --needed \
 # Create fish config directory and setup
 mkdir -p ~/.config/fish
 
+# Add ~/.local/bin to PATH for fish shell
+echo "fish_add_path ~/.local/bin" >>~/.config/fish/config.fish
+
 # Set fish as default shell
 sudo chsh -s /usr/bin/fish $USER

@@ -48,12 +48,12 @@ Turn a fresh Arch installation into a fully-configured, beautiful, and modern de
 
 ### Method 1: Direct Install (Recommended)
 ```bash
-wget -qO- https://raw.githubusercontent.com/CyphrRiot/OhmArchy/master/install.sh | bash
+wget -qO- https://cyphrriot.github.io/OhmArchy/install.sh | bash
 ```
 
 ### Method 2: Boot Script (Fresh Arch Systems)
 ```bash
-curl -fsSL https://raw.githubusercontent.com/CyphrRiot/OhmArchy/master/boot.sh | bash
+curl -fsSL https://cyphrriot.github.io/OhmArchy/boot.sh | bash
 ```
 
 ### Method 3: Manual Clone (For Customization)

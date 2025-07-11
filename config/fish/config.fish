@@ -20,16 +20,9 @@ function fish_greeting
         echo "System: $(uname -s) $(uname -r)"
     end
     
-    echo
     set_color cyan
-    echo "🐧 Welcome to OhmArchy - Your Arch Linux Environment"
+    echo "🐧 Welcome to OhmArchy"
     set_color normal
-    echo "   Shell: Fish $(fish --version | cut -d' ' -f3)"
-    echo "   Environment: $XDG_CURRENT_DESKTOP on $(if test -n "$WAYLAND_DISPLAY"; echo "Wayland"; else; echo "X11"; end)"
-    set_color green
-    echo "   ✅ Ready for development!"
-    set_color normal
-    echo
 end
 
 # Useful aliases

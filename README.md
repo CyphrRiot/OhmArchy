@@ -4,6 +4,8 @@
 
 Turn a fresh Arch installation into a fully-configured, beautiful, and modern development system based on Hyprland by running a single command. OhmArchy is a personal fork of [Basecamp's Omarchy](https://github.com/basecamp/omarchy) with extensive customizations focused on privacy, development productivity, and clean aesthetics.
 
+![OhmArchy Screenshot](images/screenshot.png)
+
 ## 🎯 Key Customizations
 
 ### 🔧 **Core System Changes**

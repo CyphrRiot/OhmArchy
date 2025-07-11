@@ -17,6 +17,27 @@ Turn a fresh Arch installation into a fully-configured, beautiful, and modern de
 - **Theme:** CypherRiot as default (replaces Tokyo Night)
 - **Code Editor:** Added Zed alongside Neovim
 - **Backup Tool:** Latest migrate binary for comprehensive system backup/restore
+- **Memory Optimization:** Intelligent memory management that actually works
+
+#### 🧠 **Memory Management Fix**
+
+Linux's default memory management is **aggressively stupid** about caching. The kernel will happily consume 90%+ of your RAM for file caches, then struggle to free it when applications actually need memory. This causes:
+
+- **Lag spikes** when opening new applications
+- **Swap thrashing** even with plenty of "free" RAM
+- **Poor responsiveness** during memory pressure
+- **Misleading memory reports** (cached ≠ available)
+
+**OhmArchy fixes this with intelligent sysctl tuning:**
+
+```bash
+vm.min_free_kbytes=1048576    # Always keep 1GB truly free
+vm.vfs_cache_pressure=50      # Be less aggressive about caching
+vm.swappiness=10              # Prefer RAM over swap usage
+vm.dirty_ratio=5              # Limit dirty page cache buildup
+```
+
+**Result:** Your system maintains responsive performance with proper memory pressure handling, ensuring applications get the RAM they need without the kernel being stubborn about giving up its precious caches.
 
 ### 📱 **Advanced Waybar Integration**
 

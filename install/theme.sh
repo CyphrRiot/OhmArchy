@@ -1,10 +1,25 @@
 # Use dark mode for QT apps too (like kdenlive)
 sudo pacman -S --noconfirm kvantum-qt5
 
+# Install Bibata Modern Ice cursor theme and Obsidian icon theme
+yay -S --noconfirm --needed bibata-cursor-theme
+sudo pacman -S --noconfirm --needed obsidian-icon-theme
+
 # Prefer dark mode everything
 sudo pacman -S --noconfirm gnome-themes-extra # Adds Adwaita-dark theme
 gsettings set org.gnome.desktop.interface gtk-theme "Adwaita-dark"
 gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"
+
+# Setup icon theme (Obsidian for beautiful file manager icons)
+gsettings set org.gnome.desktop.interface icon-theme "Obsidian"
+
+# Setup cursor theme
+gsettings set org.gnome.desktop.interface cursor-theme "Bibata-Modern-Ice"
+gsettings set org.gnome.desktop.interface cursor-size 24
+
+# Setup default cursor theme links
+mkdir -p ~/.icons/default
+cp ~/.local/share/omarchy/default/icons/default/index.theme ~/.icons/default/index.theme
 
 # Setup theme links
 mkdir -p ~/.config/omarchy/themes

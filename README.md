@@ -99,6 +99,7 @@ OhmArchy includes multiple themes with CypherRiot as the default:
 
 ### Window Management
 - **Hyprland compositor** - Smooth animations, efficient memory usage
+- **GPU acceleration** - Automatic NVIDIA, AMD/Radeon, and Intel driver setup with Vulkan support
 - **Tiling & floating** - Flexible window arrangements
 - **Multi-workspace** - Organized workflow separation
 - **Auto-login** - Direct to tty1 with Hyprland autostart
@@ -153,6 +154,7 @@ This is a **heavily customized fork** optimized for:
 - **4GB+ RAM** (8GB+ recommended for development)
 - **20GB+ storage** (50GB+ for full development setup)
 - **CPU:** Any modern processor (optimized for both Intel/AMD)
+- **GPU:** Automatic detection and setup for NVIDIA, AMD/Radeon, and Intel graphics cards
 
 ## 📄 License
 

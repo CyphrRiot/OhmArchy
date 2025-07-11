@@ -25,8 +25,9 @@
     // CypherRiot theme specific overrides
     "custom/arch": {
         "format": "󰣇",
-        "on-click": "pkill wofi || wofi --show drun",
+        "on-click": "nwg-drawer -mt 110 -mb 310 -ml 850 -mr 850 -c 4 -is 48 -spacing 15",
+        "on-click-right": "pkill wofi || wofi --show drun",
         "tooltip": true,
-        "tooltip-format": "Launch Applications"
+        "tooltip-format": "Left-click: App Drawer | Right-click: Wofi"
     }
 }

@@ -498,27 +498,6 @@ label:focus {
     font-style: normal; /* Explicitly disable italics */
 }
 
-/* Nothing Ear Bluetooth module */
-#custom-nothing-ear {
-    padding-left: 6px;
-    padding-right: 6px;
-    border-radius: 6px;
-    font-size: 16px;
-    transition: all 0.3s ease;
-}
-
-#custom-nothing-ear.connected {
-    color: #228b22; /* Dark green when connected */
-}
-
-#custom-nothing-ear.disconnected {
-    color: #696969; /* Dark grey when disconnected */
-}
-
-#custom-nothing-ear:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-}
-
 /* Mullvad VPN module */
 #custom-mullvad {
     padding-left: 2px; /* Reduced padding */

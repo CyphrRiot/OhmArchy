@@ -41,3 +41,7 @@ mkdir -p ~/.config/btop/themes
 ln -snf ~/.config/omarchy/current/theme/btop.theme ~/.config/btop/themes/current.theme
 mkdir -p ~/.config/mako
 ln -snf ~/.config/omarchy/current/theme/mako.ini ~/.config/mako/config
+# Link waybar config if theme provides one
+if [ -f ~/.config/omarchy/current/theme/config ]; then
+    ln -snf ~/.config/omarchy/current/theme/config ~/.config/waybar/config
+fi

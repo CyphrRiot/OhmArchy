@@ -93,7 +93,7 @@
 
 "custom/lock": {
 	"format": "󰌾",
-	"on-click": "/home/grendel/.local/bin/hyprlock-wrapper.sh",
+	"on-click": "$HOME/.local/bin/hyprlock-wrapper.sh",
 	"tooltip": true,
 	"tooltip-format": "󰷛 Screen Lock",
 },
@@ -156,7 +156,7 @@
 	"on-click-right": "gnome-system-monitor",
 	"tooltip": true
 },
-    
+
 "custom/power": {
 	"format": " ⏻ ",
 	"on-click": "~/.local/share/omarchy/bin/omarchy-power-menu",
@@ -170,7 +170,7 @@
     "tooltip": true,
 	"tooltip-format": "Left Click: Reboot"
 },
-    
+
 "custom/quit": {
     "format": "󰗼",
     "on-click": "hyprctl dispatch exit",

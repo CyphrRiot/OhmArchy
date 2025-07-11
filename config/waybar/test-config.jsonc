@@ -1,0 +1,40 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 30,
+    "spacing": 4,
+    "modules-left": ["clock"],
+    "modules-center": ["hyprland/workspaces"],
+    "modules-right": ["custom/mullvad", "tray"],
+    
+    "custom/mullvad": {
+        "format": "{}",
+        "tooltip": true,
+        "interval": 5,
+        "return-type": "json",
+        "exec": "$HOME/.config/waybar/scripts/mullvad.sh",
+        "on-click": "mullvad connect",
+        "on-click-right": "mullvad disconnect"
+    },
+    
+    "tray": {
+        "icon-size": 16,
+        "spacing": 3
+    },
+    
+    "clock": {
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format": " {:%H:%M %p}"
+    },
+    
+    "hyprland/workspaces": {
+        "format": "{icon}",
+        "format-icons": {
+            "1": "1",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+            "5": "5"
+        }
+    }
+}

@@ -1,0 +1,29 @@
+{
+"hyprland/workspaces#test": {
+    "format": "{name}:{icon}",
+    "format-icons": {
+        "1": "1",
+        "2": "2",
+        "3": "3",
+        "4": "4",
+        "urgent": "!",
+        "default": "?"
+    },
+    "on-click": "activate",
+    "sort-by-number": true,
+    "all-outputs": true,
+    "active-only": false,
+    "persistent-workspaces": {
+        "1": [],
+        "2": [],
+        "3": [],
+        "4": []
+    },
+    "window-rewrite": {
+        "brave-browser": "🦁",
+        "signal": "📞",
+        "com.transmissionbt.transmission_64768_25192136": "📂",
+        "thunar": "📁"
+    }
+}
+}

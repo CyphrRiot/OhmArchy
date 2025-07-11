@@ -1,0 +1,38 @@
+{
+    "custom/mullvad": {
+        "exec": "~/.config/waybar/scripts/mullvad-status.sh",
+        "return-type": "json",
+        "interval": 5,
+        "on-click": "~/.config/waybar/scripts/mullvad-click.sh left",
+        "on-click-right": "~/.config/waybar/scripts/mullvad-click.sh right",
+        "tooltip": true
+    },
+    "custom/nothing-ear": {
+        "exec": "~/.config/waybar/scripts/nothing-ear-status.sh",
+        "return-type": "json",
+        "interval": 3,
+        "on-click": "~/.config/waybar/scripts/jbl-connect.sh",
+        "tooltip": true,
+        "format": "{}"
+    },
+    "custom/media": {
+        "on-click-middle": "playerctl previous",
+        "on-click": "playerctl play-pause",
+        "format": "{icon} {}",
+        "max-length": 40,
+        "on-click-right": "playerctl next",
+        "format-icons": {
+            "Playing": "󰎈",
+            "Paused": "󰏤"
+        },
+        "return-type": "json",
+        "exec": "playerctl -a metadata --format '{\"text\": \"{{artist}} - {{title}}\", \"tooltip\": \"{{playerName}} : {{artist}} - {{album}} - {{title}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F"
+    },
+    "custom/arch": {
+        "format": "󰣇",
+        "on-click": "nwg-drawer -mt 110 -mb 310 -ml 850 -mr 850 -c 4 -is 48 -spacing 15",
+        "on-click-right": "wofi --show drun",
+        "tooltip": true,
+        "tooltip-format": "Left Click: Application Grid\nRight Click: Wofi Menu"
+    }
+}

@@ -1,0 +1,19 @@
+{
+    "layer": "top",
+    "position": "top",
+    "modules-right": ["mpris"],
+    "mpris": {
+        "format": "{player_icon} {artist} - {title}",
+        "format-paused": "{player_icon} {status_icon} {artist} - {title}",
+        "player-icons": {
+            "default": "▶",
+            "mpv": "🎵"
+        },
+        "status-icons": {
+            "paused": "⏸"
+        },
+        "max-length": 30,
+        "tooltip-format": "{player_icon} {artist} - {title}"
+    }
+}
+EOF 2>&1

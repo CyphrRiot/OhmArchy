@@ -41,10 +41,24 @@ mkdir -p ~/.config/btop/themes
 ln -snf ~/.config/omarchy/current/theme/btop.theme ~/.config/btop/themes/current.theme
 mkdir -p ~/.config/mako
 ln -snf ~/.config/omarchy/current/theme/mako.ini ~/.config/mako/config
-# Link waybar config if theme provides one
-if [ -f ~/.config/omarchy/current/theme/config ]; then
-    ln -snf ~/.config/omarchy/current/theme/config ~/.config/waybar/config
-    echo "✓ Custom waybar config linked for theme"
+# Enhanced theme validation and linking
+theme_config="~/.config/omarchy/current/theme/config"
+waybar_config="~/.config/waybar/config"
+default_config="~/.config/waybar/config.default"
+
+# Backup original waybar config if it exists and isn't already a backup
+if [ -f "$waybar_config" ] && [ ! -f "$default_config" ]; then
+    cp "$waybar_config" "$default_config"
+    echo "✓ Backed up original waybar config"
+fi
+
+# Link theme-specific config or restore default
+if [ -f "$theme_config" ]; then
+    ln -snf "$theme_config" "$waybar_config"
+    echo "✓ Theme waybar config linked: $(basename $(readlink $theme_config))"
+elif [ -f "$default_config" ]; then
+    ln -snf "$default_config" "$waybar_config"
+    echo "✓ Default waybar config restored"
 else
-    echo "ℹ Using default waybar config (no theme override)"
+    echo "⚠ No waybar config available (theme or default)"
 fi

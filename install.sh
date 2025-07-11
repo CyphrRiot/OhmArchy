@@ -4,10 +4,26 @@ set -e
 # Give people a chance to retry running the installation
 trap 'echo "OhmArchy installation failed! You can retry by running: source ~/.local/share/omarchy/install.sh"' ERR
 
-# Install everything
-for f in ~/.local/share/omarchy/install/*.sh; do
-  echo -e "\nRunning installer: $f"
-  source "$f"
+# Enhanced installation progress with timing
+installers=(~/.local/share/omarchy/install/*.sh)
+total=${#installers[@]}
+current=0
+
+for f in "${installers[@]}"; do
+    current=$((current + 1))
+    installer_name=$(basename "$f" .sh)
+    echo -e "\n[$current/$total] Installing: $installer_name"
+    echo "================================================"
+    start_time=$(date +%s)
+
+    if source "$f"; then
+        end_time=$(date +%s)
+        duration=$((end_time - start_time))
+        echo "✓ Completed: $installer_name (${duration}s)"
+    else
+        echo "⚠ Failed: $installer_name"
+        exit 1
+    fi
 done
 
 # Ensure locate is up to date now that everything has been installed

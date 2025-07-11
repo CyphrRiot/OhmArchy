@@ -24,11 +24,16 @@ cp -R ~/.local/share/omarchy/config/* ~/.config/
 # Ensure application directory exists for update-desktop-database
 mkdir -p ~/.local/share/applications
 
-# Copy waybar scripts and make executable
+# Copy waybar scripts and make executable (optimized)
 mkdir -p ~/.local/bin
-cp ~/.local/share/omarchy/bin/scripts/* ~/.local/bin/
-chmod +x ~/.local/bin/waybar-*
-chmod +x ~/.local/bin/hyprlock-wrapper.sh
+find ~/.local/share/omarchy/bin/scripts -type f \( -name "*.py" -o -name "*.sh" \) -exec sh -c '
+    script="$1"
+    basename=$(basename "$script")
+    cp "$script" ~/.local/bin/
+    chmod +x ~/.local/bin/$basename
+    echo "✓ Installed: $basename"
+' _ {} \;
+echo "✓ $(find ~/.local/bin -name "waybar-*" -type f | wc -l) waybar scripts total"
 
 # Use default bashrc from Omarchy
 echo "source ~/.local/share/omarchy/default/bash/rc" >~/.bashrc

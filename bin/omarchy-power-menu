@@ -3,6 +3,9 @@
 # Power menu for Omarchy
 # Provides power off, restart, and sleep options
 
+# Change to home directory so relative CSS imports work correctly
+cd "$HOME"
+
 # Function to show power menu. The first characters are invisible sort keys.
 show_power_menu() {
   local menu_options="\u200B Lock

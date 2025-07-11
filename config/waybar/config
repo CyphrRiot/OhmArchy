@@ -1,104 +1,24 @@
 {
-  "layer": "top",
-    "position": "top",
-    "spacing": 0,
-    "height": 26,
-    "modules-left": [
-      "hyprland/workspaces"
-    ],
-    "modules-center": [
-      "clock"
-    ],
+    "include": ["$HOME/.config/waybar/Modules", "$HOME/.config/waybar/ModulesWorkspaces", "$HOME/.config/waybar/ModulesCustom", "$HOME/.config/waybar/ModulesGroups", "$HOME/.config/waybar/UserModules"],
+    "fixed-center": true,
+    // "output": ["DP-1", "eDP-1", "HDMI-A-1"],  // Commented out to prevent dual Waybar when disconnecting from monitors
     "modules-right": [
-      "bluetooth",
-      "network",
-      "pulseaudio",
-      "cpu",
-      "battery"
+        "custom/separator#blank_3",
+        "tray", "custom/separator#blank", "temperature", "custom/separator#blank", "custom/cpu-aggregate", "custom/separator#blank", "custom/memory-accurate",
+        "custom/separator#line-tray", "pulseaudio", "custom/separator#blank", "custom/mic", "custom/separator#blank", "custom/nothing-ear", "custom/separator#blank", "bluetooth", "custom/separator#blank", "custom/tomato-timer", "custom/separator#blank", "network", "custom/mullvad", "custom/separator#blank", "battery", "custom/separator#blank", "group/notify", "custom/separator#blank", "group/status", "custom/lock"
     ],
-    "hyprland/workspaces": {
-      "on-click": "activate",
-      "format": "{icon}",
-      "format-icons": {
-        "default": "",
-        "1": "1",
-        "2": "2",
-        "3": "3",
-        "4": "4",
-        "5": "5",
-        "6": "6",
-        "7": "7",
-        "8": "8",
-        "9": "9",
-        "active": "󱓻"
-      },
-      "persistent-workspaces": {
-        "1": [],
-        "2": [],
-        "3": [],
-        "4": [],
-        "5": []
-      }
-    },
-    "cpu": {
-      "interval": 5,
-      "format": "󰍛",
-      "on-click": "kitty -e btop"
-    },
-    "clock": {
-      "format": "{:%A %H:%M}",
-      "format-alt": "{:%d %B W%V %Y}",
-      "tooltip": false
-    },
-    "network": {
-      "format-icons": ["󰤯","󰤟","󰤢","󰤥","󰤨"],
-      "format" : "{icon}",
-      "format-wifi" : "{icon}",
-      "format-ethernet" : "󰀂",
-      "format-disconnected" : "󰖪",
-      "tooltip-format-wifi": "{essid} ({frequency} GHz)\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
-      "tooltip-format-ethernet": "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
-      "tooltip-format-disconnected": "Disconnected",
-      "interval": 3,
-      "nospacing": 1,
-      "on-click": "kitty --class=nmtui -e nmtui"
-    },
-    "battery": {
-      "format": "{capacity}% {icon}",
-      "format-discharging": "{icon}",
-      "format-charging":    "{icon}",
-      "format-plugged":     "",
-      "format-icons": {
-        "charging": [
-          "󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"
-        ],
-        "default": [
-          "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"
-        ]
-      },
-      "format-full": "Charged ",
-      "tooltip-format-discharging": "{power:>1.0f}W↓ {capacity}%",
-      "tooltip-format-charging": "{power:>1.0f}W↑ {capacity}%",
-      "interval": 5,
-      "states": {
-        "warning": 20,
-        "critical": 10
-      }
-    },
-    "bluetooth": {
-      "format": "",
-      "format-disabled": "󰂲",
-      "format-connected": "",
-      "tooltip-format": "Devices connected: {num_connections}",
-      "on-click": "GTK_THEME=Adwaita-dark blueberry"
-    },
-    "pulseaudio": {
-      "format": "",
-      "format-muted": "󰝟",
-      "scroll-step": 5,
-      "on-click": "GTK_THEME=Adwaita-dark pavucontrol",
-      "tooltip-format": "Playing at {volume}%",
-      "on-click-right": "pamixer -t",
-      "ignored-sinks": ["Easy Effects Sink"]
-    }
+    "modules-center": ["clock"],
+    "layer": "top",
+    "margin-right": 8,
+    "modules-left": [
+        "custom/arch", "custom/separator#blank", "hyprland/workspaces#rw", "custom/separator#blank",
+        "mpris", "hyprland/window"
+    ],
+    "margin-left": 8,
+    "spacing": 10,
+    "passthrough": false,
+    "exclusive": true,
+    "margin-top": 3,
+    "position": "top",
+    "ipc": false
 }

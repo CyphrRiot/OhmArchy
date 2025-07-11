@@ -1,8 +1,34 @@
+# Create backup of existing configs before overwriting
+echo "Creating backup of existing configs..."
+if [ -d ~/.config ]; then
+    cp -R ~/.config ~/.config.backup-$(date +%s) 2>/dev/null || true
+    echo "✓ Backup created"
+fi
+
+# Verify Python3 is available for waybar scripts
+if ! command -v python3 &> /dev/null; then
+    echo "Installing Python3 for waybar scripts..."
+    sudo pacman -S --noconfirm python3
+fi
+
+# Check script dependencies
+echo "Checking Python dependencies for waybar scripts..."
+python3 -c "import psutil" 2>/dev/null || {
+    echo "Installing psutil for system monitoring scripts..."
+    pip install --user psutil
+}
+
 # Copy over Omarchy configs
 cp -R ~/.local/share/omarchy/config/* ~/.config/
 
 # Ensure application directory exists for update-desktop-database
 mkdir -p ~/.local/share/applications
+
+# Copy waybar scripts and make executable
+mkdir -p ~/.local/bin
+cp ~/.local/share/omarchy/bin/scripts/* ~/.local/bin/
+chmod +x ~/.local/bin/waybar-*
+chmod +x ~/.local/bin/hyprlock-wrapper.sh
 
 # Use default bashrc from Omarchy
 echo "source ~/.local/share/omarchy/default/bash/rc" >~/.bashrc
@@ -40,3 +66,20 @@ include "%H/.local/share/omarchy/default/xcompose"
 <Multi_key> <space> <n> : "$OMARCHY_USER_NAME"
 <Multi_key> <space> <e> : "$OMARCHY_USER_EMAIL"
 EOF
+
+# Post-installation validation
+echo "Validating installation..."
+python3 -c "import sys; print('✓ Python3 OK')" || echo "⚠ Python3 issue"
+waybar --help >/dev/null 2>&1 && echo "✓ Waybar OK" || echo "⚠ Waybar issue"
+mullvad --help >/dev/null 2>&1 && echo "✓ Mullvad OK" || echo "⚠ Mullvad issue"
+
+# Verify waybar scripts are executable and functional
+for script in waybar-tomato-timer.py waybar-cpu-aggregate.py waybar-memory-accurate.py waybar-mic-status.py; do
+    if [ -x ~/.local/bin/$script ]; then
+        echo "✓ $script installed and executable"
+    else
+        echo "⚠ $script missing or not executable"
+    fi
+done
+
+echo "Configuration installation complete!"

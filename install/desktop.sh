@@ -8,5 +8,5 @@ yay -S --noconfirm --needed \
   brave-bin mpv \
   evince imv \
   localsend-bin \
-  mullvad-vpn-cli \
+  mullvad-vpn-bin \
   fuzzel nwg-drawer swaync

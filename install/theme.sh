@@ -44,4 +44,7 @@ ln -snf ~/.config/omarchy/current/theme/mako.ini ~/.config/mako/config
 # Link waybar config if theme provides one
 if [ -f ~/.config/omarchy/current/theme/config ]; then
     ln -snf ~/.config/omarchy/current/theme/config ~/.config/waybar/config
+    echo "✓ Custom waybar config linked for theme"
+else
+    echo "ℹ Using default waybar config (no theme override)"
 fi

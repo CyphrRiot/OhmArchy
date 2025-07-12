@@ -2,7 +2,9 @@
 
 **A customized Arch Linux setup based on Omarchy, optimized for the CypherRiot workflow.**
 
-Turn a fresh Arch installation into a fully-configured, beautiful, and modern development system based on Hyprland by running a single command. OhmArchy is a personal fork of [Basecamp's Omarchy](https://github.com/basecamp/omarchy) with extensive customizations focused on privacy, development productivity, and clean aesthetics.
+Turn a fresh Arch installation into a fully-configured, beautiful, and modern development system based on Hyprland by running a single command.
+
+OhmArchy is an even more opiniated personal fork of [Basecamp's Omarchy](https://github.com/basecamp/omarchy) with extensive customizations focused on privacy, development productivity, and clean aesthetics.
 
 ![OhmArchy Screenshot](images/screenshot.png)
 

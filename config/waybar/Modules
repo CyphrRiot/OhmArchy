@@ -8,13 +8,18 @@
 "temperature": {
 	"interval": 10,
 	"tooltip": true,
-	"thermal-zone": 8,  // Use thermal_zone8 (x86_pkg_temp) for actual CPU temp
+	"hwmon-path": [
+		"/sys/class/hwmon/hwmon6/temp1_input",
+		"/sys/class/thermal/thermal_zone9/temp",
+		"/sys/class/thermal/thermal_zone0/temp"
+	],
 	"critical-threshold": 82,
 	"format-critical": "{temperatureC}°{icon}",
 	"format": "{temperatureC}°{icon}",
 	"format-icons": [
 		"󰈸"
 	],
+	"tooltip-format": "CPU Temperature: {temperatureC}°C",
 	"on-click-right": "$HOME/.config/hypr/scripts/WaybarScripts.sh --btop"
 },
 

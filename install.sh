@@ -56,4 +56,10 @@ fi
 echo "================================="
 echo "🎉 OhmArchy installation complete!"
 
+# Ensure gum is available for final prompt
+if ! command -v gum &>/dev/null; then
+    echo "Installing gum for final prompt..."
+    yay -S --noconfirm --needed gum
+fi
+
 gum confirm "Reboot to apply all settings?" && reboot

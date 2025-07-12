@@ -183,11 +183,11 @@ fi
 if pgrep hyprsunset > /dev/null; then
     echo "✓ hyprsunset already running"
     # Verify it's running with correct temperature
-    if pgrep -f "hyprsunset.*4500" > /dev/null; then
-        echo "✓ hyprsunset running with correct temperature (4500K)"
+    if pgrep -f "hyprsunset.*4000" > /dev/null; then
+        echo "✓ hyprsunset running with correct temperature (4000K)"
     else
         echo "⚠ hyprsunset running but may not have correct temperature"
-        echo "Restarting hyprsunset with 4500K temperature..."
+        echo "Restarting hyprsunset with 4000K temperature..."
         pkill hyprsunset
         sleep 1
     fi
@@ -195,8 +195,8 @@ fi
 
 # Start hyprsunset if not running or if we need to restart
 if ! pgrep hyprsunset > /dev/null; then
-    echo "Starting hyprsunset for blue light filtering at 4500K..."
-    hyprsunset -t 4500 &
+    echo "Starting hyprsunset for blue light filtering at 4000K..."
+    hyprsunset -t 4000 &
     sleep 3
 
     # Verify it started successfully
@@ -204,8 +204,8 @@ if ! pgrep hyprsunset > /dev/null; then
         echo "✓ hyprsunset started successfully"
 
         # Double-check with temperature verification
-        if pgrep -f "hyprsunset.*4500" > /dev/null; then
-            echo "✓ hyprsunset confirmed running with 4500K temperature"
+        if pgrep -f "hyprsunset.*4000" > /dev/null; then
+            echo "✓ hyprsunset confirmed running with 4000K temperature"
         else
             echo "⚠ hyprsunset started but temperature verification failed"
         fi
@@ -218,7 +218,7 @@ if ! pgrep hyprsunset > /dev/null; then
         echo "Attempting alternative start method..."
 
         # Try alternative start method
-        nohup hyprsunset -t 4500 > /dev/null 2>&1 &
+        nohup hyprsunset -t 4000 > /dev/null 2>&1 &
         sleep 2
 
         if pgrep hyprsunset > /dev/null; then
@@ -226,7 +226,7 @@ if ! pgrep hyprsunset > /dev/null; then
         else
             echo "❌ INSTALLATION FAILED: hyprsunset cannot start!"
             echo "Blue light filtering will not work automatically."
-            echo "Manual start: run 'hyprsunset -t 4500' after login"
+            echo "Manual start: run 'hyprsunset -t 4000' after login"
             exit 1
         fi
     fi
@@ -234,5 +234,5 @@ fi
 
 echo "✅ CypherRiot theme SUCCESSFULLY applied and validated!"
 echo "✅ Installation complete with working CypherRiot theme!"
-echo "✅ Blue light filter active (4500K temperature)"
+echo "✅ Blue light filter active (4000K temperature)"
 echo "✅ hyprsunset will auto-start on login via Hyprland config"

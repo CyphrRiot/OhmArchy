@@ -114,11 +114,11 @@ if [ -n "$HYPRSUNSET_PID" ]; then
     print_status "PASS" "hyprsunset is running (PID: $HYPRSUNSET_PID)"
 
     # Check if running with correct temperature
-    if pgrep -f "hyprsunset.*4500" > /dev/null; then
-        print_status "PASS" "hyprsunset running with 4500K temperature"
+    if pgrep -f "hyprsunset.*4000" > /dev/null; then
+        print_status "PASS" "hyprsunset running with 4000K temperature"
     elif pgrep -f "hyprsunset.*-t" > /dev/null; then
         TEMP=$(ps aux | grep hyprsunset | grep -v grep | sed 's/.*-t \([0-9]*\).*/\1/')
-        print_status "WARN" "hyprsunset running with temperature: ${TEMP}K (expected 4500K)"
+        print_status "WARN" "hyprsunset running with temperature: ${TEMP}K (expected 4000K)"
     else
         print_status "WARN" "hyprsunset running but temperature unclear"
     fi
@@ -152,15 +152,15 @@ if [ -f "$HYPR_CONFIG" ]; then
         EXEC_LINE=$(grep "exec-once.*hyprsunset" "$HYPR_CONFIG")
         print_status "PASS" "hyprsunset autostart configured: $EXEC_LINE"
 
-        if echo "$EXEC_LINE" | grep -q "4500"; then
-            print_status "PASS" "Autostart uses 4500K temperature"
+        if echo "$EXEC_LINE" | grep -q "4000"; then
+            print_status "PASS" "Autostart uses 4000K temperature"
         else
-            print_status "WARN" "Autostart temperature may not be 4500K"
+            print_status "WARN" "Autostart temperature may not be 4000K"
         fi
     else
         print_status "FAIL" "hyprsunset autostart not configured in Hyprland"
         echo -e "${YELLOW}Add this line to $HYPR_CONFIG:${NC}"
-        echo "exec-once = hyprsunset -t 4500"
+        echo "exec-once = hyprsunset -t 4000"
     fi
 else
     print_status "FAIL" "Hyprland config not found"
@@ -181,7 +181,7 @@ else
     if [ -n "$ORIGINAL_PID" ]; then
         ORIGINAL_TEMP=$(ps aux | grep hyprsunset | grep -v grep | sed 's/.*-t \([0-9]*\).*/\1/' | head -1)
         if [[ ! "$ORIGINAL_TEMP" =~ ^[0-9]+$ ]]; then
-            ORIGINAL_TEMP="4500"  # Default fallback
+            ORIGINAL_TEMP="4000"  # Default fallback
         fi
     fi
 
@@ -194,7 +194,7 @@ else
     fi
 
     print_status "INFO" "Testing manual start..."
-    hyprsunset -t 4500 &
+    hyprsunset -t 4000 &
     TEST_PID=$!
     sleep 2
 
@@ -221,8 +221,8 @@ else
             hyprsunset -t "$ORIGINAL_TEMP" &
             print_status "INFO" "Restored to original temperature (${ORIGINAL_TEMP}K)"
         else
-            hyprsunset -t 4500 &
-            print_status "INFO" "Restored to default temperature (4500K)"
+            hyprsunset -t 4000 &
+            print_status "INFO" "Restored to default temperature (4000K)"
         fi
     else
         print_status "FAIL" "Manual start failed"
@@ -251,7 +251,7 @@ fi
 INSTANCE_COUNT=$(pgrep hyprsunset | wc -l)
 if [ "$INSTANCE_COUNT" -gt 1 ]; then
     print_status "WARN" "Multiple hyprsunset instances running ($INSTANCE_COUNT)"
-    echo -e "${YELLOW}Consider running: pkill hyprsunset && hyprsunset -t 4500 &${NC}"
+    echo -e "${YELLOW}Consider running: pkill hyprsunset && hyprsunset -t 4000 &${NC}"
 fi
 
 # Check for conflicting programs
@@ -273,7 +273,7 @@ echo -e "${RED}Issues found: $ISSUES_FOUND${NC}"
 if [ $ISSUES_FOUND -eq 0 ]; then
     echo ""
     echo -e "${GREEN}🎉 hyprsunset is working perfectly!${NC}"
-    echo -e "${GREEN}Blue light filtering is active at 4500K${NC}"
+    echo -e "${GREEN}Blue light filtering is active at 4000K${NC}"
     echo -e "${GREEN}Automatic startup is configured correctly${NC}"
 elif [ $ISSUES_FOUND -le 2 ]; then
     echo ""
@@ -285,7 +285,7 @@ else
     echo -e "${RED}Blue light filtering may not work properly${NC}"
     echo ""
     echo -e "${CYAN}Quick fixes to try:${NC}"
-    echo "1. Restart hyprsunset: pkill hyprsunset && hyprsunset -t 4500 &"
+    echo "1. Restart hyprsunset: pkill hyprsunset && hyprsunset -t 4000 &"
     echo "2. Check Hyprland config: grep hyprsunset ~/.config/hypr/hyprland.conf"
     echo "3. Reinstall: yay -S hyprsunset"
     echo "4. Restart Hyprland session"
@@ -293,7 +293,7 @@ fi
 
 echo ""
 echo -e "${PURPLE}Manual commands:${NC}"
-echo "• Start: hyprsunset -t 4500 &"
+echo "• Start: hyprsunset -t 4000 &"
 echo "• Stop: pkill hyprsunset"
 echo "• Check status: pgrep hyprsunset"
 echo "• Warmer (3000K): hyprsunset -t 3000 &"

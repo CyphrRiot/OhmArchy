@@ -43,7 +43,7 @@ git clone https://github.com/CyphrRiot/OhmArchy.git ~/.local/share/omarchy
 - **Code Editor:** Added Zed alongside Neovim
 - **Backup Tool:** Latest migrate binary for comprehensive system backup/restore
 - **Memory Optimization:** Intelligent memory management that actually works
-- **Blue Light Filter:** Automatic hyprsunset at 4500K for reduced eye strain
+- **Blue Light Filter:** Automatic hyprsunset at 4000K for reduced eye strain
 
 #### 🧠 **Memory Management Fix**
 
@@ -185,8 +185,8 @@ OhmArchy includes multiple themes with CypherRiot as the default:
 
 ### Health & Comfort Features
 
-- **Automatic blue light filtering** - hyprsunset configured with `exec-once = hyprsunset -t 4500` for immediate warm temperature on startup
-- **4500K color temperature** - Scientifically optimal warm setting reduces blue light exposure without color distortion
+- **Automatic blue light filtering** - hyprsunset configured with `exec-once = hyprsunset -t 4000` for immediate warm temperature on startup
+- **4000K color temperature** - Scientifically optimal warm setting reduces blue light exposure without color distortion
 - **No manual switching needed** - Runs continuously from login, unlike redshift/f.lux time-based switching
 - **GPU accelerated filtering** - Native Wayland compositor integration for smooth, lag-free color adjustment
 - **Memory pressure relief** - Intelligent VM tuning prevents system lag and swap thrashing

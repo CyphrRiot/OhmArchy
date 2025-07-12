@@ -36,8 +36,8 @@ mkdir -p ~/.local/bin
 find ~/.local/share/omarchy/bin/scripts -type f \( -name "*.py" -o -name "*.sh" \) -exec sh -c '
     script="$1"
     basename=$(basename "$script")
-    cp "$script" ~/.local/bin/"
-    chmod +x ~/.local/bin/$basename"
+    cp "$script" ~/.local/bin/
+    chmod +x ~/.local/bin/$basename
     echo "✓ Installed: $basename"
 ' _ {} \;
 echo "✓ $(find ~/.local/bin -name "waybar-*" -type f | wc -l) waybar scripts total"

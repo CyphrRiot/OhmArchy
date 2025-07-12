@@ -7,14 +7,6 @@
         "on-click-right": "~/.config/waybar/scripts/mullvad-click.sh right",
         "tooltip": true
     },
-    "custom/nothing-ear": {
-        "exec": "~/.config/waybar/scripts/nothing-ear-status.sh",
-        "return-type": "json",
-        "interval": 3,
-        "on-click": "~/.config/waybar/scripts/jbl-connect.sh",
-        "tooltip": true,
-        "format": "{}"
-    },
     "custom/media": {
         "on-click-middle": "playerctl previous",
         "on-click": "playerctl play-pause",

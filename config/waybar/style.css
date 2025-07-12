@@ -2,10 +2,10 @@
 /* Translucent */
 
 @define-color critical #ff0000; /* critical color */
-@define-color warning #f3f809;  /* warning color */
-@define-color fgcolor #ffffff;  /* foreground color */
-@define-color bgcolor #303030;  /* background color */
-@define-color bgcolor #222436;  /* background color */
+@define-color warning #f3f809; /* warning color */
+@define-color fgcolor #ffffff; /* foreground color */
+@define-color bgcolor #303030; /* background color */
+@define-color bgcolor #222436; /* background color */
 @define-color alert   #df3320;
 
 @define-color accent1 #ff7a93;
@@ -16,31 +16,31 @@
 @define-color accent6 #0db9d7;
 
 /* New blue colors for workspaces */
-@define-color workspace_active #9d7bd8;  /* Slightly darker purple */
-@define-color workspace_hover #b8a2e6;  /* Lighter purple for hover */
+@define-color workspace_active #9d7bd8; /* Slightly darker purple */
+@define-color workspace_hover #b8a2e6; /* Lighter purple for hover */
 
 /* New colors for CPU, Memory, and Window title */
-@define-color cpu_color #6a7de8;      /* Blueish-purple */
-@define-color memory_color #8a95e8;   /* Lighter blueish-purple */
-@define-color temp_color #547ae0;     /* Blue with a hint of purple for temperature */
-@define-color power_color #a45ad0;    /* More reddish purple for power icon */
-@define-color lock_color #9c7ce8;     /* Light purple for lock icon */
-@define-color window_color #4a2b7a;   /* 35% darker purple for window title */
+@define-color cpu_color #6a7de8; /* Blueish-purple */
+@define-color memory_color #8a95e8; /* Lighter blueish-purple */
+@define-color temp_color #547ae0; /* Blue with a hint of purple for temperature */
+@define-color power_color #a45ad0; /* More reddish purple for power icon */
+@define-color lock_color #9c7ce8; /* Light purple for lock icon */
+@define-color window_color #4a2b7a; /* 35% darker purple for window title */
 
 * {
-font-family: "JetBrainsMono Nerd Font";
-font-weight: bold;
-min-height: 0;
-/* set font-size to 100% if font scaling is set to 1.00 using nwg-look */
-font-size: 98%;
-font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
+    font-family: "JetBrainsMono Nerd Font";
+    font-weight: bold;
+    min-height: 0;
+    /* set font-size to 100% if font scaling is set to 1.00 using nwg-look */
+    font-size: 98%;
+    font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
 }
 
 window#waybar {
-    background-color: rgba(0,0,0,0.3);
+    background-color: rgba(0, 0, 0, 0.3);
     color: #ffffff;
     transition-property: background-color;
-    transition-duration: .5s;
+    transition-duration: 0.5s;
     border-radius: 10px;
 }
 
@@ -60,43 +60,43 @@ tooltip {
 #taskbar button,
 #workspaces button {
     background-color: transparent;
-    color: #4a6b8a;  /* Darker blue-gray for inactive workspaces (same as tray parentheses) */
+    color: #4a6b8a; /* Darker blue-gray for inactive workspaces (same as tray parentheses) */
     box-shadow: none;
-	text-shadow: none;
+    text-shadow: none;
     padding: 4px;
     margin-left: 8px;
     margin-right: 8px;
     border-radius: 9px;
     animation: gradient_f 20s ease-in infinite;
-    transition: all 0.5s cubic-bezier(.55,-0.68,.48,1.682);
+    transition: all 0.5s cubic-bezier(0.55, -0.68, 0.48, 1.682);
 }
 
 #taskbar button.active,
 #workspaces button.active {
     background-color: transparent;
-    color: #3584e8;  /* Active workspace now uses the old inactive color (bright blue) */
+    color: #3584e8; /* Active workspace now uses the old inactive color (bright blue) */
     padding: 4px;
     margin-left: 8px;
     margin-right: 8px;
     animation: gradient_f 20s ease-in infinite;
-    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+    transition: all 0.3s cubic-bezier(0.55, -0.68, 0.48, 1.682);
 }
 
 #taskbar button:hover,
 #workspaces button:hover {
     background: rgba(0, 0, 0, 0.2);
-	color: #6b8ba6;  /* Lighter than inactive, darker than active for hover */
+    color: #6b8ba6; /* Lighter than inactive, darker than active for hover */
     /* Keep the same padding as the normal state */
     padding: 4px;
     margin-left: 8px;
     margin-right: 8px;
     animation: gradient_f 20s ease-in infinite;
-    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+    transition: all 0.3s cubic-bezier(0.55, -0.68, 0.48, 1.682);
 }
 
 #workspaces button.focused {
     background-color: #bbccdd;
-    color: #3584e8;  /* Use new active color for focused state too */
+    color: #3584e8; /* Use new active color for focused state too */
     /* box-shadow: inset 0 -3px #ffffff; */
 }
 
@@ -105,7 +105,7 @@ tooltip {
 }
 
 #mode {
-    background-color: #64727D;
+    background-color: #64727d;
     border-bottom: 3px solid #ffffff;
 }
 
@@ -154,9 +154,9 @@ tooltip {
     padding-right: 3px;
 }
 #custom-menu,
-#custom-file_manager, 
+#custom-file_manager,
 #custom-tty,
-#custom-browser, 
+#custom-browser,
 #custom-settings {
     margin-left: 3px;
     margin-right: 3px;
@@ -175,17 +175,17 @@ tooltip {
 #custom-weather.clearNight,
 #custom-weather.cloudyFoggyDay,
 #custom-weather.cloudyFoggyNight,
-#custom-weather.default, 
+#custom-weather.default,
 #custom-weather.rainyDay,
 #custom-weather.rainyNight,
 #custom-weather.severe,
 #custom-weather.showyIcyDay,
 #custom-weather.snowyIcyNight,
 #custom-weather.sunnyDay {
-	padding-top: 4px;
-	padding-bottom: 4px;
-	padding-right: 6px;
-	padding-left: 6px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-right: 6px;
+    padding-left: 6px;
 }
 
 /* Added spacing between workspaces */
@@ -231,19 +231,19 @@ tooltip {
 
 #battery.critical:not(.charging) {
     color: @critical;
-	animation-name: blink;
-	animation-duration: 3.0s;
-	animation-timing-function: steps(12);
-	animation-iteration-count: infinite;
-	animation-direction: alternate;
+    animation-name: blink;
+    animation-duration: 3s;
+    animation-timing-function: steps(12);
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
 }
 
 label:focus {
     background-color: #000000;
 }
 
-#custom-menu{
-    color: #FFFFFF;
+#custom-menu {
+    color: #ffffff;
     /*padding: 3px;*/
 }
 
@@ -254,17 +254,17 @@ label:focus {
     color: @cpu_color;
     padding-left: 3px;
     padding-right: 3px;
-    min-width: 45px;     /* Reduced minimum width */
+    min-width: 45px; /* Reduced minimum width */
 }
 
 #custom-cpu-max.warning,
 #custom-cpu-aggregate.warning {
-    color: #e0af68;  /* Softer yellow-orange for warnings */
+    color: #e0af68; /* Softer yellow-orange for warnings */
 }
 
 #custom-cpu-max.critical,
 #custom-cpu-aggregate.critical {
-    color: #ff9e64;  /* Orange instead of red - less alarming */
+    color: #ff9e64; /* Orange instead of red - less alarming */
     /* Removed the annoying flashing animation */
 }
 
@@ -319,11 +319,11 @@ label:focus {
 }
 
 #custom-memory-accurate.warning {
-    color: #e0af68;  /* Softer yellow-orange for warnings */
+    color: #e0af68; /* Softer yellow-orange for warnings */
 }
 
 #custom-memory-accurate.critical {
-    color: #ff9e64;  /* Orange for critical memory usage */
+    color: #ff9e64; /* Orange for critical memory usage */
 }
 
 #backlight {
@@ -335,10 +335,10 @@ label:focus {
 }
 
 #network {
-    color: @accent5;  /* Changed from @accent3 (orange) to @accent5 (blue) */
-    padding-left: 3px;  /* Reduced padding */
+    color: @accent5; /* Changed from @accent3 (orange) to @accent5 (blue) */
+    padding-left: 3px; /* Reduced padding */
     padding-right: 2px; /* Reduced padding on right side */
-    min-width: 20px;    /* Ensure minimum width */
+    min-width: 20px; /* Ensure minimum width */
 }
 
 #network.disconnected {
@@ -360,7 +360,7 @@ label:focus {
     color: @accent2;
 }
 
-#pluseaudio-source-muted{
+#pluseaudio-source-muted {
     color: #a0a0a0;
 }
 
@@ -395,7 +395,7 @@ label:focus {
 }
 
 #temperature.critical {
-    color: #ff9e64;  /* Orange text instead of red background */
+    color: #ff9e64; /* Orange text instead of red background */
 }
 
 #tray {
@@ -421,18 +421,13 @@ label:focus {
 #idle_inhibitor {
     color: #ffffff;
     font-size: 16px;
-    
-    
-    
-    
 }
 
 /*-----Indicators----*/
 #custom-hypridle.notactive,
 #idle_inhibitor.activated {
-    color: #50FF50;
+    color: #50ff50;
     font-weight: bold;
-    
 }
 
 #mpd {
@@ -461,30 +456,28 @@ label:focus {
 }
 
 #custom-separator.line-tray {
-    color: #4a6b8a;  /* Same color as tray parentheses */
+    color: #4a6b8a; /* Same color as tray parentheses */
 }
 
 #backlight-slider slider,
 #pulseaudio-slider slider {
-	min-width: 0px;
-	min-height: 0px;
-	opacity: 0;
-	background-image: none;
-	border: none;
-	box-shadow: none;
+    min-width: 0px;
+    min-height: 0px;
+    opacity: 0;
+    background-image: none;
+    border: none;
+    box-shadow: none;
 }
 
 #backlight-slider trough,
 #pulseaudio-slider trough {
-	min-width: 80px;
-	min-height: 5px;
-	
+    min-width: 80px;
+    min-height: 5px;
 }
 
 #backlight-slider highlight,
 #pulseaudio-slider highlight {
-	min-height: 10px;
-	
+    min-height: 10px;
 }
 
 /* Media player module */
@@ -494,53 +487,32 @@ label:focus {
     padding-left: 10px;
     padding-right: 10px;
     border-radius: 8px;
-    background-color: transparent;  /* Made transparent to fix colored block issue */
+    background-color: transparent; /* Made transparent to fix colored block issue */
     color: rgb(160, 190, 240);
     font-weight: bold;
-    font-style: normal;  /* Explicitly disable italics */
+    font-style: normal; /* Explicitly disable italics */
 }
 
 /* Custom playerctl module */
 #custom-playerctl {
-    font-style: normal;  /* Explicitly disable italics */
-}
-
-/* Nothing Ear Bluetooth module */
-#custom-nothing-ear {
-    padding-left: 6px;
-    padding-right: 6px;
-    border-radius: 6px;
-    font-size: 16px;
-    transition: all 0.3s ease;
-}
-
-#custom-nothing-ear.connected {
-    color: #228B22;  /* Dark green when connected */
-}
-
-#custom-nothing-ear.disconnected {
-    color: #696969;  /* Dark grey when disconnected */
-}
-
-#custom-nothing-ear:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    font-style: normal; /* Explicitly disable italics */
 }
 
 /* Mullvad VPN module */
 #custom-mullvad {
-    padding-left: 2px;  /* Reduced padding */
+    padding-left: 2px; /* Reduced padding */
     padding-right: 6px;
     border-radius: 6px;
-    font-size: 102%;  /* Match the global waybar font size */
+    font-size: 102%; /* Match the global waybar font size */
     transition: all 0.3s ease;
 }
 
 #custom-mullvad.mullvad-connected {
-    color: @memory_color;  /* Same as FREE RAM */
+    color: @memory_color; /* Same as FREE RAM */
 }
 
 #custom-mullvad.mullvad-disconnected {
-    color: @memory_color;  /* Same as FREE RAM */
+    color: @memory_color; /* Same as FREE RAM */
 }
 
 /* Notification Center (SwayNC) */
@@ -556,7 +528,7 @@ label:focus {
 #custom-swaync.dnd-none,
 #custom-swaync.inhibited-none,
 #custom-swaync.dnd-inhibited-none {
-    color: #008B8B;  /* Dark cyan for no notifications */
+    color: #008b8b; /* Dark cyan for no notifications */
 }
 
 /* Purple when there are notifications (like active Mullvad) */
@@ -564,18 +536,18 @@ label:focus {
 #custom-swaync.dnd-notification,
 #custom-swaync.inhibited-notification,
 #custom-swaync.dnd-inhibited-notification {
-    color: #bb9af7;  /* Purple like active Mullvad when notifications present */
+    color: #bb9af7; /* Purple like active Mullvad when notifications present */
 }
 
 /* Window title styling */
 #window {
-    color: @workspace_active;  /* Use the same purple as active workspace */
-    font-size: 95%;  /* Slightly smaller font for window titles */
+    color: @workspace_active; /* Use the same purple as active workspace */
+    font-size: 95%; /* Slightly smaller font for window titles */
 }
 
 /* Microphone button styling */
 #custom-mic {
-    color: #9ece6a;  /* Green when active */
+    color: #9ece6a; /* Green when active */
     font-size: 110%;
     margin: 0 5px;
     padding: 0 8px;
@@ -585,7 +557,7 @@ label:focus {
 }
 
 #custom-mic.muted {
-    color: #7aa2f7;  /* Dark blue when muted (like tray parentheses) */
+    color: #7aa2f7; /* Dark blue when muted (like tray parentheses) */
     background: rgba(122, 162, 247, 0.1);
 }
 

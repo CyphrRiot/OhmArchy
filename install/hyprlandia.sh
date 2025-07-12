@@ -16,12 +16,7 @@ critical_packages=(
     "python-psutil"
 )
 
-# Define optional Hyprland packages that can fail
-optional_packages=(
-    "hyprshot"
-    "hyprpicker"
-    "hyprland-qtutils"
-)
+
 
 # Install critical packages - failure stops installation
 echo "Installing critical Hyprland packages..."
@@ -36,16 +31,12 @@ for package_group in "${critical_packages[@]}"; do
     fi
 done
 
-# Install optional packages - failure continues with warning
-echo "Installing optional Hyprland packages..."
-for package_group in "${optional_packages[@]}"; do
-    echo "Installing: $package_group"
-    if yay -S --noconfirm --needed "$package_group"; then
-        echo "✓ Success: $package_group"
-    else
-        echo "⚠ Failed: $package_group (optional - continuing...)"
-    fi
-done
+# Install essential Hyprland utilities
+echo "Installing essential Hyprland utilities..."
+yay -S --noconfirm --needed \
+    hyprshot \
+    hyprpicker \
+    hyprland-qtutils
 
 # Validate critical components are actually available
 echo "Validating Hyprland installation..."

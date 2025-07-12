@@ -16,14 +16,7 @@ critical_packages=(
     "udisks2"           # Automatic disk mounting and management
 )
 
-# Define optional filesystem packages that can fail
-optional_packages=(
-    "dosfstools"        # FAT32/VFAT support and utilities
-    "gvfs-mtp"          # Android device support via MTP
-    "gvfs-gphoto2"      # Digital camera support
-    "gvfs-smb"          # Windows network share support
-    "gvfs-nfs"          # Network File System support
-)
+
 
 # Install critical filesystem packages - failure stops installation
 echo "Installing critical filesystem support..."
@@ -38,16 +31,14 @@ for package in "${critical_packages[@]}"; do
     fi
 done
 
-# Install optional filesystem packages - failure continues with warning
-echo "Installing optional filesystem support..."
-for package in "${optional_packages[@]}"; do
-    echo "Installing: $package"
-    if yay -S --noconfirm --needed "$package"; then
-        echo "✓ Success: $package"
-    else
-        echo "⚠ Failed: $package (optional - continuing...)"
-    fi
-done
+# Install essential filesystem packages
+echo "Installing essential filesystem support..."
+yay -S --noconfirm --needed \
+    dosfstools \
+    gvfs-mtp \
+    gvfs-gphoto2 \
+    gvfs-smb \
+    gvfs-nfs
 
 # Validate critical filesystem support is available
 echo "Validating filesystem support..."

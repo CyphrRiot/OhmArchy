@@ -8,6 +8,29 @@ OhmArchy is an even more opiniated personal fork of [Basecamp's Omarchy](https:/
 
 ![OhmArchy Screenshot](images/screenshot.png)
 
+## 🚀 Installation
+
+### Method 1: Setup Script (Fresh Arch Systems)
+
+```bash
+curl -fsSL https://cyphrriot.github.io/OhmArchy/setup.sh | bash
+```
+
+### Method 2: Manual Clone (For Customization)
+
+```bash
+git clone https://github.com/CyphrRiot/OhmArchy.git ~/.local/share/omarchy
+~/.local/share/omarchy/install.sh
+```
+
+### Installation Features
+
+- **Automatic backup** - Creates timestamped backup of existing configs
+- **Dependency verification** - Ensures Python3 and required packages
+- **Script validation** - Verifies all waybar modules are functional
+- **Error handling** - Clear feedback and rollback capability
+- **100% confidence** - Comprehensive testing and validation
+
 ## 🎯 Key Customizations
 
 ### 🔧 **Core System Changes**
@@ -86,32 +109,11 @@ vm.dirty_ratio=5              # Limit dirty page cache buildup
 - **Removed proprietary services** - 1Password, Typora, Dropbox, Spotify, Zoom
 - **Removed entertainment** - YouTube webapp, WhatsApp webapp
 
-## 🚀 Installation
-
-### Method 1: Boot Script (Fresh Arch Systems)
-
-```bash
-curl -fsSL https://cyphrriot.github.io/OhmArchy/boot.sh | bash
-```
-
-### Method 2: Manual Clone (For Customization)
-
-```bash
-git clone https://github.com/CyphrRiot/OhmArchy.git ~/.local/share/omarchy
-~/.local/share/omarchy/install.sh
-```
-
-### Installation Features
-
-- **Automatic backup** - Creates timestamped backup of existing configs
-- **Dependency verification** - Ensures Python3 and required packages
-- **Script validation** - Verifies all waybar modules are functional
-- **Error handling** - Clear feedback and rollback capability
-- **100% confidence** - Comprehensive testing and validation
-
 ## 🔄 System Management
 
 ### Updates
+
+_Currently a work in progress... may not work as expected._
 
 ```bash
 omarchy-update

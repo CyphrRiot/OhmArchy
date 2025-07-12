@@ -26,7 +26,14 @@ sudo sysctl --system
 
 # Verify settings were applied
 echo "Memory optimization settings applied:"
-echo "Min free memory: $(sysctl vm.min_free_kbytes | cut -d= -f2 | tr -d ' ') KB ($(echo "scale=2; $(sysctl vm.min_free_kbytes | cut -d= -f2 | tr -d ' ') / 1024" | bc) MB)"
-echo "Cache pressure: $(sysctl vm.vfs_cache_pressure | cut -d= -f2 | tr -d ' ')"
-echo "Swappiness: $(sysctl vm.swappiness | cut -d= -f2 | tr -d ' ')"
+# Store sysctl values to avoid redundant calls
+min_free_kb=$(sysctl vm.min_free_kbytes | cut -d= -f2 | tr -d ' ')
+cache_pressure=$(sysctl vm.vfs_cache_pressure | cut -d= -f2 | tr -d ' ')
+swappiness=$(sysctl vm.swappiness | cut -d= -f2 | tr -d ' ')
+
+# Use bash arithmetic instead of bc dependency
+min_free_mb=$((min_free_kb / 1024))
+echo "Min free memory: ${min_free_kb} KB (${min_free_mb} MB)"
+echo "Cache pressure: ${cache_pressure}"
+echo "Swappiness: ${swappiness}"
 echo "✓ Memory optimization configured"

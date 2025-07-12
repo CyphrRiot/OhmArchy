@@ -13,6 +13,13 @@ fi
 
 # Check script dependencies
 echo "Checking Python dependencies for waybar scripts..."
+
+# Ensure pip is available for Python package installation
+if ! command -v pip &> /dev/null; then
+    echo "Installing pip for Python package management..."
+    sudo pacman -S --noconfirm python-pip
+fi
+
 python3 -c "import psutil" 2>/dev/null || {
     echo "Installing psutil for system monitoring scripts..."
     pip install --user psutil
@@ -29,8 +36,8 @@ mkdir -p ~/.local/bin
 find ~/.local/share/omarchy/bin/scripts -type f \( -name "*.py" -o -name "*.sh" \) -exec sh -c '
     script="$1"
     basename=$(basename "$script")
-    cp "$script" ~/.local/bin/
-    chmod +x ~/.local/bin/$basename
+    cp "$script" ~/.local/bin/"
+    chmod +x ~/.local/bin/$basename"
     echo "✓ Installed: $basename"
 ' _ {} \;
 echo "✓ $(find ~/.local/bin -name "waybar-*" -type f | wc -l) waybar scripts total"

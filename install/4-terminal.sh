@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # OhmArchy Terminal & Fish Shell Setup Script
-# Installs Fish shell with Tide prompt and beautiful configuration
+# Installs Fish shell with Hydro prompt and beautiful configuration
 
-echo "🐠 Setting up Fish shell with Tide prompt..."
+echo "🐠 Setting up Fish shell with Hydro prompt..."
 
 # Install core terminal packages
 echo "Installing terminal packages..."
@@ -12,7 +12,7 @@ yay -S --noconfirm --needed \
   fd eza fzf ripgrep zoxide bat \
   wl-clipboard fastfetch btop \
   man tldr less whois plocate bash-completion \
-  kitty fish git
+  kitty fish git lsd
 
 # Verify Fish was installed successfully
 if ! command -v fish &> /dev/null; then
@@ -55,13 +55,13 @@ else
     echo "⚠ Fisher installation failed - continuing without it"
 fi
 
-# Install Tide prompt via Fisher
-echo "Installing Tide prompt..."
-fish -c "fisher install IlanCosman/tide@v6" 2>/dev/null
-if fish -c "functions -q tide" &> /dev/null; then
-    echo "✓ Tide prompt installed successfully"
+# Install Hydro prompt via Fisher
+echo "Installing Hydro prompt..."
+fish -c "fisher install jorgebucaran/hydro" 2>/dev/null
+if fish -c "functions -q _hydro_prompt" &> /dev/null; then
+    echo "✓ Hydro prompt installed successfully"
 else
-    echo "⚠ Tide installation failed - using existing functions"
+    echo "⚠ Hydro installation failed - using existing functions"
 fi
 
 # Install additional useful Fish plugins
@@ -78,23 +78,23 @@ else
     exit 1
 fi
 
-# Initialize and configure Tide if it was installed
-echo "Configuring Tide prompt..."
+# Initialize and configure Hydro if it was installed
+echo "Configuring Hydro prompt..."
 fish -c "
-    # Set Tide configuration to a beautiful preset
-    set -U tide_character_icon '➜'
-    set -U tide_character_color brred
-    set -U tide_pwd_color_dirs bryellow
-    set -U tide_pwd_color_anchors brcyan
-    set -U tide_git_color_branch brmagenta
-    set -U tide_time_color brblack
-    set -U tide_context_color_default brblue
-    set -U tide_prompt_add_newline_before true
-    set -U tide_left_prompt_items context pwd git newline character
-    set -U tide_right_prompt_items status cmd_duration jobs time
-    set -U tide_prompt_color_frame_and_connection 6C7086
-    echo '✓ Tide configuration applied'
-" 2>/dev/null || echo "Note: Tide configuration skipped"
+    # Set Hydro configuration to a beautiful preset
+    set -U hydro_symbol_prompt '❱'
+    set -U hydro_symbol_git_dirty '•'
+    set -U hydro_symbol_git_ahead '↑'
+    set -U hydro_symbol_git_behind '↓'
+    set -U hydro_color_pwd blue
+    set -U hydro_color_git yellow
+    set -U hydro_color_error red
+    set -U hydro_color_prompt cyan
+    set -U hydro_color_duration magenta
+    set -U hydro_multiline false
+    set -U hydro_cmd_duration_threshold 1000
+    echo '✓ Hydro configuration applied'
+" 2>/dev/null || echo "Note: Hydro configuration skipped"
 
 # Test Fish configuration
 echo "Testing Fish configuration..."
@@ -115,11 +115,11 @@ else
     exit 1
 fi
 
-# Test Tide prompt specifically
-if fish -c "functions -q _tide_item_pwd" &> /dev/null; then
-    echo "✓ Tide prompt functions available"
+# Test Hydro prompt specifically
+if fish -c "functions -q _hydro_prompt" &> /dev/null; then
+    echo "✓ Hydro prompt functions available"
 else
-    echo "⚠ Tide functions not found - using fallback prompt"
+    echo "⚠ Hydro functions not found - using fallback prompt"
 fi
 
 # Force fish to reload configuration
@@ -135,7 +135,7 @@ fish -c "fish_greeting" &>/dev/null && echo "✓ Fish greeting works" || echo "�
 # Test prompt generation
 if fish -c "fish_prompt" &>/dev/null; then
     echo "✓ Fish prompt generates successfully"
-    echo "🎉 Beautiful Fish shell with Tide prompt installed!"
+    echo "🎉 Beautiful Fish shell with Hydro prompt installed!"
 else
     echo "⚠ Fish prompt generation failed"
     exit 1
@@ -153,7 +153,7 @@ fish -c "
 echo ""
 echo "✅ Fish shell setup complete!"
 echo "💡 Tips:"
-echo "   • Run 'tide configure' to customize your prompt"
+echo "   • Hydro prompt is pre-configured with beautiful defaults"
 echo "   • Use 'fisher list' to see installed plugins"
 echo "   • Type 'fish' to test your new shell now"
 echo "   • Your beautiful prompt will be active on next login"

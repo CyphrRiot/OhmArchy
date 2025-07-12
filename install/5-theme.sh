@@ -31,7 +31,7 @@ ln -snf ~/.config/omarchy/themes/cypherriot ~/.config/omarchy/current/theme
 source ~/.local/share/omarchy/themes/cypherriot/backgrounds.sh
 ln -snf ~/.config/omarchy/backgrounds/cypherriot ~/.config/omarchy/current/backgrounds
 # Use the first available background (will be created by backgrounds.sh)
-ln -snf ~/.config/omarchy/current/backgrounds/1-Dark-Purple-Abstract.jpg ~/.config/omarchy/current/background
+ln -snf ~/.config/omarchy/current/backgrounds/1-cyber.jpg ~/.config/omarchy/current/background
 
 # Set specific app links for current theme
 ln -snf ~/.config/omarchy/current/theme/hyprlock.conf ~/.config/hypr/hyprlock.conf

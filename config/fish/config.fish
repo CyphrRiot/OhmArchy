@@ -25,6 +25,46 @@ function fish_greeting
     set_color normal
 end
 
+# Custom OhmArchy prompt
+function fish_prompt
+    # Get current directory
+    set -l cwd (basename (prompt_pwd))
+
+    # Get git branch if in git repo
+    set -l git_branch ""
+    if git rev-parse --git-dir >/dev/null 2>&1
+        set git_branch (git branch --show-current 2>/dev/null)
+        if test -n "$git_branch"
+            set git_branch " ($git_branch)"
+        end
+    end
+
+    # Get current time
+    set -l current_time (date +"%H:%M")
+
+    # Build prompt with colors
+    set_color purple
+    echo -n "⚡ "
+    set_color cyan
+    echo -n "$USER"
+    set_color normal
+    echo -n "@"
+    set_color green
+    echo -n (hostname)
+    set_color normal
+    echo -n " in "
+    set_color yellow
+    echo -n "$cwd"
+    set_color magenta
+    echo -n "$git_branch"
+    set_color normal
+    echo -n " [$current_time]"
+    echo ""
+    set_color red
+    echo -n "➜ "
+    set_color normal
+end
+
 # Useful aliases
 alias l='ls -l'
 alias la='ls -a'

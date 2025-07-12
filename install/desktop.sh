@@ -16,13 +16,14 @@ critical_packages=(
     "thunar sushi ffmpegthumbnailer gnome-calculator"
     "hyprsunset gnome-keyring"
     "nwg-drawer swaync"
+    "brave-bin"
 )
 
 # Define optional packages that can fail
 optional_packages=(
     "fcitx5 fcitx5-gtk fcitx5-qt fcitx5-configtool"
     "wl-clip-persist"
-    "brave-bin mpv evince imv"
+    "mpv evince imv"
     "mullvad-vpn-bin"
 )
 

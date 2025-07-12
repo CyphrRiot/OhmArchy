@@ -43,7 +43,7 @@ find ~/.local/share/omarchy/bin/scripts -type f \( -name "*.py" -o -name "*.sh" 
 echo "✓ $(find ~/.local/bin -name "waybar-*" -type f | wc -l) waybar scripts total"
 
 # Use default bashrc from Omarchy
-echo "source ~/.local/share/omarchy/default/bash/rc" >~/.bashrc
+echo "source $HOME/.local/share/omarchy/default/bash/rc" >~/.bashrc
 
 # Login directly as user, rely on disk encryption + hyprlock for security
 sudo mkdir -p /etc/systemd/system/getty@tty1.service.d

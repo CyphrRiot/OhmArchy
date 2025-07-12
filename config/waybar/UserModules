@@ -1,10 +1,10 @@
 {
     "custom/mullvad": {
-        "exec": "~/.config/waybar/scripts/mullvad-status.sh",
+        "exec": "$HOME/.config/waybar/scripts/mullvad-status.sh",
         "return-type": "json",
         "interval": 5,
-        "on-click": "~/.config/waybar/scripts/mullvad-click.sh left",
-        "on-click-right": "~/.config/waybar/scripts/mullvad-click.sh right",
+        "on-click": "$HOME/.config/waybar/scripts/mullvad-click.sh left",
+        "on-click-right": "$HOME/.config/waybar/scripts/mullvad-click.sh right",
         "tooltip": true
     },
     "custom/media": {

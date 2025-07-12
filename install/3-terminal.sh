@@ -16,14 +16,11 @@ echo "Setting up Fish shell configuration..."
 mkdir -p ~/.config/fish
 
 # Copy OhmArchy's default fish configuration with verification
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-OHMARCHY_ROOT="$(dirname "$SCRIPT_DIR")"
-
-if [ -f "$OHMARCHY_ROOT/config/fish/config.fish" ]; then
-    cp "$OHMARCHY_ROOT/config/fish/config.fish" ~/.config/fish/config.fish
+if [ -f ~/.local/share/omarchy/config/fish/config.fish ]; then
+    cp ~/.local/share/omarchy/config/fish/config.fish ~/.config/fish/config.fish
     echo "✓ Fish configuration copied successfully"
 else
-    echo "⚠ Fish config not found at $OHMARCHY_ROOT/config/fish/config.fish"
+    echo "⚠ Fish config not found at ~/.local/share/omarchy/config/fish/config.fish"
     exit 1
 fi
 

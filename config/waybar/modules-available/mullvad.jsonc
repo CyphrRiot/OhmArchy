@@ -1,10 +1,10 @@
 {
     "custom/mullvad": {
-        "exec": "~/.config/waybar/scripts/mullvad-status.sh",
+        "exec": "$HOME/.config/waybar/scripts/mullvad-status.sh",
         "return-type": "text",
         "interval": 5,
         "on-click": "mullvad connect",
         "on-click-right": "mullvad disconnect",
-        "tooltip": false
-    }
+        "tooltip": false,
+    },
 }

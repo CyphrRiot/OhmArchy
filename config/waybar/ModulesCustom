@@ -33,7 +33,7 @@
 
 "custom/browser": {
 	"format": " ",
-	"on-click": "~/.local/bin/brave-wayland-fixed",
+	"on-click": "$HOME/.local/bin/brave-wayland-fixed",
 	"tooltip": true,
 	"tooltip-format": "Launch Browser",
 },
@@ -152,7 +152,7 @@
 
 "custom/power": {
 	"format": " ⏻ ",
-	"on-click": "~/.local/share/omarchy/bin/omarchy-power-menu",
+	"on-click": "$HOME/.local/share/omarchy/bin/omarchy-power-menu",
 	"on-click-right": "$HOME/.config/hypr/scripts/ChangeBlur.sh",
 	"tooltip": false
 },

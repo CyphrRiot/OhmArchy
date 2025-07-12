@@ -4,13 +4,14 @@ critical_packages=(
     "waybar"
     "xdg-desktop-portal-hyprland"
     "polkit-gnome"
+    "wofi"
 )
 
 # Define optional Hyprland packages that can fail
 optional_packages=(
     "hyprshot hyprpicker hyprlock hypridle"
     "hyprland-qtutils"
-    "wofi mako swaybg"
+    "mako swaybg"
     "xdg-desktop-portal-gtk"
     "grim slurp"
 )

@@ -42,9 +42,9 @@ ln -snf ~/.config/omarchy/current/theme/btop.theme ~/.config/btop/themes/current
 mkdir -p ~/.config/mako
 ln -snf ~/.config/omarchy/current/theme/mako.ini ~/.config/mako/config
 # Enhanced theme validation and linking
-theme_config="~/.config/omarchy/current/theme/config"
-waybar_config="~/.config/waybar/config"
-default_config="~/.config/waybar/config.default"
+theme_config="$HOME/.config/omarchy/current/theme/config"
+waybar_config="$HOME/.config/waybar/config"
+default_config="$HOME/.config/waybar/config.default"
 
 # Backup original waybar config if it exists and isn't already a backup
 if [ -f "$waybar_config" ] && [ ! -f "$default_config" ]; then

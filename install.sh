@@ -1,15 +1,26 @@
 # Exit immediately if a command exits with a non-zero status
 set -e
 
-# Give people a chance to retry running the installation
-trap 'echo "OhmArchy installation failed! You can retry by running: source $HOME/.local/share/omarchy/install.sh"' ERR
+# Simple error handler that gives retry instructions
+trap 'echo "❌ OhmArchy installation failed! You can retry by running: source $HOME/.local/share/omarchy/install.sh"' ERR
 
 # Enhanced installation progress with timing
 installers=($HOME/.local/share/omarchy/install/*.sh)
 total=${#installers[@]}
 current=0
 
+echo "🚀 Starting OhmArchy Installation"
+echo "================================="
+echo "Total installers: $total"
+echo "Start time: $(date)"
+echo
+
 for f in "${installers[@]}"; do
+    # Skip any lib directory files
+    if [[ "$f" == *"/lib/"* ]]; then
+        continue
+    fi
+
     current=$((current + 1))
     installer_name=$(basename "$f" .sh)
     echo -e "\n[$current/$total] Installing: $installer_name"
@@ -21,7 +32,7 @@ for f in "${installers[@]}"; do
         duration=$((end_time - start_time))
         echo "✓ Completed: $installer_name (${duration}s)"
     else
-        echo "⚠ Failed: $installer_name"
+        echo "❌ Failed: $installer_name"
         exit 1
     fi
 done
@@ -55,6 +66,7 @@ fi
 
 echo "================================="
 echo "🎉 OhmArchy installation complete!"
+echo "Completed at: $(date)"
 
 # Ensure gum is available for final prompt
 if ! command -v gum &>/dev/null; then

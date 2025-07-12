@@ -182,6 +182,16 @@ check_item "Terminal = kitty" "grep -q '\$terminal = kitty' ~/.config/hypr/hyprl
 
 echo ""
 
+# Blue Light Filter
+echo -e "${CYAN}🌅 Blue Light Filter (hyprsunset)${NC}"
+echo "--------------------------------"
+check_item "hyprsunset Package" "pacman -Q hyprsunset" "true"
+check_item "hyprsunset Running" "pgrep hyprsunset" "false"
+check_item "hyprsunset Autostart" "grep -q 'exec-once.*hyprsunset' ~/.config/hypr/hyprland.conf" "true"
+check_item "hyprsunset 4500K Temp" "grep -q 'hyprsunset.*4500' ~/.config/hypr/hyprland.conf" "true"
+
+echo ""
+
 # Plymouth Theme
 echo -e "${CYAN}🎭 Plymouth Boot Theme${NC}"
 echo "----------------------"

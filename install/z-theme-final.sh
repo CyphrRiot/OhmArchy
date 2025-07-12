@@ -135,19 +135,73 @@ fi
 
 # Validate and start hyprsunset for blue light filtering
 echo "Validating blue light filter (hyprsunset)..."
+
+# First check if hyprsunset is installed
+if ! command -v hyprsunset &> /dev/null; then
+    echo "❌ CRITICAL: hyprsunset not found in PATH!"
+    echo "Installing hyprsunset..."
+    if yay -S --noconfirm --needed hyprsunset; then
+        echo "✓ hyprsunset installed successfully"
+    else
+        echo "❌ INSTALLATION FAILED: Could not install hyprsunset!"
+        exit 1
+    fi
+fi
+
+# Check if hyprsunset is already running
+if pgrep hyprsunset > /dev/null; then
+    echo "✓ hyprsunset already running"
+    # Verify it's running with correct temperature
+    if pgrep -f "hyprsunset.*4500" > /dev/null; then
+        echo "✓ hyprsunset running with correct temperature (4500K)"
+    else
+        echo "⚠ hyprsunset running but may not have correct temperature"
+        echo "Restarting hyprsunset with 4500K temperature..."
+        pkill hyprsunset
+        sleep 1
+    fi
+fi
+
+# Start hyprsunset if not running or if we need to restart
 if ! pgrep hyprsunset > /dev/null; then
-    echo "Starting hyprsunset for blue light filtering..."
+    echo "Starting hyprsunset for blue light filtering at 4500K..."
     hyprsunset -t 4500 &
-    sleep 2
+    sleep 3
+
+    # Verify it started successfully
     if pgrep hyprsunset > /dev/null; then
         echo "✓ hyprsunset started successfully"
+
+        # Double-check with temperature verification
+        if pgrep -f "hyprsunset.*4500" > /dev/null; then
+            echo "✓ hyprsunset confirmed running with 4500K temperature"
+        else
+            echo "⚠ hyprsunset started but temperature verification failed"
+        fi
     else
-        echo "⚠ hyprsunset failed to start"
+        echo "❌ CRITICAL: hyprsunset failed to start!"
+        echo "Troubleshooting information:"
+        echo "  - Command exists: $(command -v hyprsunset)"
+        echo "  - Wayland display: $WAYLAND_DISPLAY"
+        echo "  - XDG session: $XDG_CURRENT_DESKTOP"
+        echo "Attempting alternative start method..."
+
+        # Try alternative start method
+        nohup hyprsunset -t 4500 > /dev/null 2>&1 &
+        sleep 2
+
+        if pgrep hyprsunset > /dev/null; then
+            echo "✓ hyprsunset started with alternative method"
+        else
+            echo "❌ INSTALLATION FAILED: hyprsunset cannot start!"
+            echo "Blue light filtering will not work automatically."
+            echo "Manual start: run 'hyprsunset -t 4500' after login"
+            exit 1
+        fi
     fi
-else
-    echo "✓ hyprsunset already running"
 fi
 
 echo "✅ CypherRiot theme SUCCESSFULLY applied and validated!"
 echo "✅ Installation complete with working CypherRiot theme!"
 echo "✅ Blue light filter active (4500K temperature)"
+echo "✅ hyprsunset will auto-start on login via Hyprland config"

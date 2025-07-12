@@ -16,4 +16,3 @@
         "tooltip-format": "{player_icon} {artist} - {title}"
     }
 }
-EOF 2>&1

@@ -45,11 +45,33 @@ else
     exit 1
 fi
 
-# Test Fish configuration
+# Test Fish configuration and custom prompt
 echo "Testing Fish configuration..."
 if fish -c "echo 'Fish configuration test successful'" &> /dev/null; then
     echo "✓ Fish configuration loads without errors"
 else
     echo "⚠ Fish configuration has syntax errors"
     echo "Check ~/.config/fish/config.fish for issues"
+    exit 1
 fi
+
+# Test custom prompt function
+echo "Testing custom Fish prompt..."
+if fish -c "functions -q fish_prompt" &> /dev/null; then
+    echo "✓ Custom fish_prompt function available"
+else
+    echo "⚠ Custom fish_prompt function missing"
+    exit 1
+fi
+
+# Force fish to reload configuration for current session
+echo "Reloading Fish configuration..."
+if fish -c "source ~/.config/fish/config.fish; echo 'Fish config reloaded'" &> /dev/null; then
+    echo "✓ Fish configuration reloaded successfully"
+else
+    echo "⚠ Fish configuration reload failed"
+fi
+
+# Test that fish greeting and prompt are working
+echo "Validating Fish setup..."
+fish -c "fish_greeting; echo 'Testing custom prompt:'; fish_prompt" 2>/dev/null || echo "⚠ Fish prompt test had issues"

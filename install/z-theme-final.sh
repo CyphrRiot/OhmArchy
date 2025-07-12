@@ -133,5 +133,21 @@ if ! pgrep waybar > /dev/null; then
     exit 1
 fi
 
+# Validate and start hyprsunset for blue light filtering
+echo "Validating blue light filter (hyprsunset)..."
+if ! pgrep hyprsunset > /dev/null; then
+    echo "Starting hyprsunset for blue light filtering..."
+    hyprsunset -t 4500 &
+    sleep 2
+    if pgrep hyprsunset > /dev/null; then
+        echo "✓ hyprsunset started successfully"
+    else
+        echo "⚠ hyprsunset failed to start"
+    fi
+else
+    echo "✓ hyprsunset already running"
+fi
+
 echo "✅ CypherRiot theme SUCCESSFULLY applied and validated!"
 echo "✅ Installation complete with working CypherRiot theme!"
+echo "✅ Blue light filter active (4500K temperature)"

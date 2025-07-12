@@ -17,12 +17,14 @@ set -g __fish_git_prompt_showupstream yes
 set -g __fish_git_prompt_color_branch yellow
 set -g __fish_git_prompt_color_upstream_ahead green
 set -g __fish_git_prompt_color_upstream_behind red
-set -g __fish_git_prompt_char_dirtystate "⚡"
+set -g __fish_git_prompt_color_dirtystate 'ff8c00'
+set -g __fish_git_prompt_char_dirtystate "●"
 set -g __fish_git_prompt_char_stagedstate "→"
 set -g __fish_git_prompt_char_untrackedfiles "☡"
 set -g __fish_git_prompt_char_stashstate "↩"
 set -g __fish_git_prompt_char_upstream_ahead "+"
 set -g __fish_git_prompt_char_upstream_behind "-"
+set -g __fish_git_prompt_char_upstream_equal ""
 
 # Enhanced Prompt Function
 function fish_prompt

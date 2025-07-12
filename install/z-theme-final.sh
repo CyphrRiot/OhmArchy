@@ -63,59 +63,75 @@ else
     echo "⚠ No waybar config available (theme or default)"
 fi
 
-# FORCE CypherRiot theme application with validation
-echo "🎨 Forcing CypherRiot theme application..."
+# FINAL BULLETPROOF THEME APPLICATION - MUST BE LAST STEP
+echo "🎨 FINAL: Forcing CypherRiot theme as LAST installation step..."
 
-# Validate and force theme linking
-if [ ! -L ~/.config/omarchy/current/theme ] || [ "$(readlink ~/.config/omarchy/current/theme)" != "$(realpath ~/.config/omarchy/themes/cypherriot)" ]; then
-    echo "⚠ Theme link broken or wrong, forcing CypherRiot..."
-    rm -f ~/.config/omarchy/current/theme
-    ln -snf ~/.config/omarchy/themes/cypherriot ~/.config/omarchy/current/theme
-fi
+# Kill any running waybar to prevent conflicts
+pkill waybar || true
+sleep 2
 
-# Validate and force background linking
-if [ ! -L ~/.config/omarchy/current/background ] || [ ! -f ~/.config/omarchy/current/background ]; then
-    echo "⚠ Background link broken, forcing CypherRiot background..."
-    rm -f ~/.config/omarchy/current/background
-    ln -snf ~/.config/omarchy/current/backgrounds/1-cyber.jpg ~/.config/omarchy/current/background
-fi
+# FORCE CypherRiot theme linking with absolute paths
+echo "Forcing CypherRiot theme links..."
+rm -f ~/.config/omarchy/current/theme
+ln -snf ~/.config/omarchy/themes/cypherriot ~/.config/omarchy/current/theme
 
-# Validate and force waybar config linking
-if [ ! -L ~/.config/waybar/config ] || [ "$(readlink ~/.config/waybar/config)" != "$(realpath ~/.config/omarchy/current/theme/config)" ]; then
-    echo "⚠ Waybar config link broken, forcing CypherRiot waybar..."
-    rm -f ~/.config/waybar/config
-    ln -snf ~/.config/omarchy/current/theme/config ~/.config/waybar/config
-fi
+# FORCE background system
+echo "Forcing CypherRiot background system..."
+rm -f ~/.config/omarchy/current/backgrounds
+ln -snf ~/.config/omarchy/backgrounds/cypherriot ~/.config/omarchy/current/backgrounds
+rm -f ~/.config/omarchy/current/background
+ln -snf ~/.config/omarchy/current/backgrounds/1-cyber.jpg ~/.config/omarchy/current/background
 
-# Validate and force wofi styling
-if [ ! -L ~/.config/wofi/style.css ] || [ "$(readlink ~/.config/wofi/style.css)" != "$(realpath ~/.config/omarchy/current/theme/wofi.css)" ]; then
-    echo "⚠ Wofi style broken, forcing CypherRiot wofi..."
-    mkdir -p ~/.config/wofi
-    rm -f ~/.config/wofi/style.css
-    ln -snf ~/.config/omarchy/current/theme/wofi.css ~/.config/wofi/style.css
-fi
+# FORCE waybar config - MOST CRITICAL
+echo "FORCING CypherRiot waybar config..."
+rm -f ~/.config/waybar/config
+ln -snf ~/.config/omarchy/current/theme/config ~/.config/waybar/config
 
-# Final validation
-echo "🔍 Final theme validation:"
-if [ -L ~/.config/omarchy/current/theme ] && [ "$(basename $(readlink ~/.config/omarchy/current/theme))" = "cypherriot" ]; then
-    echo "✓ CypherRiot theme is active"
-else
-    echo "❌ Theme validation failed!"
+# FORCE all other theme configs
+echo "Forcing all theme configurations..."
+mkdir -p ~/.config/wofi
+rm -f ~/.config/wofi/style.css
+ln -snf ~/.config/omarchy/current/theme/wofi.css ~/.config/wofi/style.css
+
+rm -f ~/.config/hypr/hyprlock.conf
+ln -snf ~/.config/omarchy/current/theme/hyprlock.conf ~/.config/hypr/hyprlock.conf
+
+mkdir -p ~/.config/mako
+rm -f ~/.config/mako/config
+ln -snf ~/.config/omarchy/current/theme/mako.ini ~/.config/mako/config
+
+# Restart background service with CypherRiot background
+echo "Restarting background service..."
+pkill swaybg || true
+sleep 1
+swaybg -i ~/.config/omarchy/current/background -m fill &
+
+# Start waybar with CypherRiot theme
+echo "Starting waybar with CypherRiot theme..."
+waybar &
+sleep 3
+
+# CRITICAL VALIDATION - INSTALLATION FAILS IF THIS FAILS
+echo "🔍 CRITICAL VALIDATION:"
+if [ ! -L ~/.config/omarchy/current/theme ] || [ "$(basename $(readlink ~/.config/omarchy/current/theme))" != "cypherriot" ]; then
+    echo "❌ INSTALLATION FAILED: CypherRiot theme not active!"
     exit 1
 fi
 
-if [ -f ~/.config/omarchy/current/background ]; then
-    echo "✓ Background is linked: $(basename $(readlink ~/.config/omarchy/current/background))"
-else
-    echo "❌ Background validation failed!"
+if [ ! -f ~/.config/omarchy/current/background ]; then
+    echo "❌ INSTALLATION FAILED: Background not linked!"
     exit 1
 fi
 
-if [ -f ~/.config/waybar/config ]; then
-    echo "✓ Waybar config is active"
-else
-    echo "❌ Waybar config validation failed!"
+if [ ! -L ~/.config/waybar/config ]; then
+    echo "❌ INSTALLATION FAILED: Waybar config not linked!"
     exit 1
 fi
 
-echo "🎉 CypherRiot theme forced and validated successfully!"
+if ! pgrep waybar > /dev/null; then
+    echo "❌ INSTALLATION FAILED: Waybar not running!"
+    exit 1
+fi
+
+echo "✅ CypherRiot theme SUCCESSFULLY applied and validated!"
+echo "✅ Installation complete with working CypherRiot theme!"

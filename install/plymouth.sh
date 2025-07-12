@@ -138,6 +138,53 @@ if ! command -v plymouth &>/dev/null; then
     rm -f "$TEMP_LOGO"
   fi
 
+  # Generate OhmArchy ASCII logo automatically
+  echo "✓ Generating OhmArchy ASCII boot logo..."
+
+  # OhmArchy ASCII art
+  ASCII_ART=' ▄██████▄   ██    ██  ████████████    ▄████████    ▄████████    ▄█    █▄    ▄██   ▄
+███    ███  ██    ██  ██    ██   ██   ███    ███   ███    ███   ███    ███   ███   ██▄
+███    ███  ██▀▀▀▀██  ██    ██   ██   ███    ███   ███    █▀    ███    ███   ███▄▄▄███
+███    ███  ██    ██  ████████████   ███    ███  ▄███▄▄▄▄██▀  ▄███▄▄▄▄███▄▄ ▀▀▀▀▀▀███
+███    ███  ██▀▀▀▀██  ██    ██   ██ ▀███████████ ▀▀███▀▀▀▀▀   ▀▀███▀▀▀▀███▀  ▄██   ███
+███    ███  ██    ██  ██    ██   ██   ███    ███ ▀███████████   ███    ███   ███   ███
+███    ███  ██    ██  ██    ██   ██   ███    ███   ███    ███   ███    ███   ███   ███
+ ▀██████▀   ██    ██  ██    ██   ██   ███    █▀    ███    ███   ███    █▀     ▀█████▀
+                                                  ███    ███                         '
+
+  # Install ImageMagick if needed for logo generation
+  if ! command -v convert &> /dev/null && ! command -v magick &> /dev/null; then
+    echo "Installing ImageMagick for logo generation..."
+    sudo pacman -S --noconfirm --needed imagemagick
+  fi
+
+  # Create ASCII art logo with available fonts
+  TEMP_LOGO="/tmp/ohmarchy_logo.png"
+  echo "$ASCII_ART" > /tmp/ascii_art.txt
+
+  # Try different fonts in order of preference
+  FONTS=("DejaVu-Sans-Mono" "Liberation-Mono" "monospace")
+  LOGO_GENERATED=false
+
+  for font in "${FONTS[@]}"; do
+    if magick -size 800x168 -background '#1a1b26' -fill '#c0caf5' -font "$font" -pointsize 10 -gravity center label:@/tmp/ascii_art.txt "$TEMP_LOGO" 2>/dev/null; then
+      echo "✓ Logo generated with font: $font"
+      LOGO_GENERATED=true
+      break
+    fi
+  done
+
+  # If generation succeeded, install the custom logo
+  if [ "$LOGO_GENERATED" = true ] && [ -f "$TEMP_LOGO" ]; then
+    sudo cp "$TEMP_LOGO" "$CUSTOM_LOGO"
+    sudo chown root:root "$CUSTOM_LOGO"
+    sudo chmod 644 "$CUSTOM_LOGO"
+    echo "✓ OhmArchy ASCII logo installed"
+    rm -f /tmp/ascii_art.txt "$TEMP_LOGO"
+  else
+    echo "⚠ Logo generation failed, using default logo"
+  fi
+
   # Check for persistent custom logo backup from generate-boot-logo.sh
   PERSISTENT_BACKUP_DIR="$HOME/.config/omarchy/plymouth-backup"
   PERSISTENT_LOGO="$PERSISTENT_BACKUP_DIR/custom_logo.png"

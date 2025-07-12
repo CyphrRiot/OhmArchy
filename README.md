@@ -76,10 +76,9 @@ vm.dirty_ratio=5              # Limit dirty page cache buildup
 ### 📱 **Clean Web Applications**
 
 - **Proton Mail** (SUPER+E / XF86Mail) - Privacy-focused email in floating window
-- **ChatGPT** (SUPER+A) - AI assistant
 - **Google Messages** (SUPER+ALT+G) - Communication
 - **X/Twitter** (SUPER+X) - Social platform
-- **GitHub, Google Photos, Google Contacts** - All with proper icons from homarr-labs
+- **GitHub** - Development platform with proper icons from homarr-labs
 
 ### ⌨️ **Enhanced Keybindings & Productivity**
 

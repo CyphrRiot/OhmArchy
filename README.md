@@ -20,6 +20,7 @@ OhmArchy is an even more opiniated personal fork of [Basecamp's Omarchy](https:/
 - **Code Editor:** Added Zed alongside Neovim
 - **Backup Tool:** Latest migrate binary for comprehensive system backup/restore
 - **Memory Optimization:** Intelligent memory management that actually works
+- **Blue Light Filter:** Automatic hyprsunset at 4500K for reduced eye strain
 
 #### 🧠 **Memory Management Fix**
 
@@ -162,6 +163,7 @@ OhmArchy includes multiple themes with CypherRiot as the default:
 - **Tiling & floating** - Flexible window arrangements
 - **Multi-workspace** - Organized workflow separation
 - **Auto-login** - Direct to tty1 with Hyprland autostart
+- **Blue light filter** - Automatic hyprsunset reduces eye strain during evening use
 
 ### Development Ready
 
@@ -179,11 +181,22 @@ OhmArchy includes multiple themes with CypherRiot as the default:
 - **Local tools** - Reduced dependency on cloud services
 - **Clean telemetry** - Minimal data collection
 
+### Health & Comfort Features
+
+- **Automatic blue light filtering** - hyprsunset configured with `exec-once = hyprsunset -t 4500` for immediate warm temperature on startup
+- **4500K color temperature** - Scientifically optimal warm setting reduces blue light exposure without color distortion
+- **No manual switching needed** - Runs continuously from login, unlike redshift/f.lux time-based switching
+- **GPU accelerated filtering** - Native Wayland compositor integration for smooth, lag-free color adjustment
+- **Memory pressure relief** - Intelligent VM tuning prevents system lag and swap thrashing
+- **Responsive performance** - Conservative memory management keeps applications snappy
+- **Clean, minimal UI** - Reduced visual clutter and distractions for focused work
+
 ### Audio & Media
 
-- **PipeWire/WirePlumber** - Modern audio stack
-- **MPV** - Lightweight, powerful video player
+- **PipeWire/WirePlumber** - Modern audio stack with low latency
+- **MPV** - Lightweight, powerful video player with hardware acceleration
 - **Screenshot integration** - Multiple capture methods with clipboard support
+- **Media key support** - Volume, brightness, and playback controls work out of the box
 
 ## 🔀 Differences from Original Omarchy
 

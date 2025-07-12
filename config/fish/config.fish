@@ -1,46 +1,50 @@
-# Clean OhmArchy greeting
+# =============================================================================
+# Dependency-Free Fish Configuration with Git Integration
+# =============================================================================
+
+# Greeting with fastfetch if available
 function fish_greeting
-    # Show system info with Arch logo
     if command -v fastfetch >/dev/null 2>&1
         fastfetch --logo arch
     end
+end
 
-    # Then show OhmArchy welcome
-    echo
-    set_color cyan
-    echo "🐧 Welcome to OhmArchy!"
+# Git Prompt Configuration
+set -g __fish_git_prompt_showdirtystate yes
+set -g __fish_git_prompt_showstashstate yes
+set -g __fish_git_prompt_showuntrackedfiles yes
+set -g __fish_git_prompt_showupstream yes
+set -g __fish_git_prompt_color_branch yellow
+set -g __fish_git_prompt_color_upstream_ahead green
+set -g __fish_git_prompt_color_upstream_behind red
+set -g __fish_git_prompt_char_dirtystate "⚡"
+set -g __fish_git_prompt_char_stagedstate "→"
+set -g __fish_git_prompt_char_untrackedfiles "☡"
+set -g __fish_git_prompt_char_stashstate "↩"
+set -g __fish_git_prompt_char_upstream_ahead "+"
+set -g __fish_git_prompt_char_upstream_behind "-"
+
+# Enhanced Prompt Function
+function fish_prompt
+    set -l last_status $status
+    echo -n "Ω "  # 🐧 (penguin - commented for easy revert)
+    set_color blue
+    printf "%s" (string replace $HOME "~" (pwd))
     set_color normal
-    echo
-end
-
-# Additional aliases to match zsh setup
-alias l='ls -l'
-alias la='ls -a'
-alias lla='ls -la'
-alias lt='ls --tree'
-alias ls='lsd'
-
-# Goose function equivalent (Fish doesn't need the complex zsh syntax)
-function goose
-    if test "$argv[1]" = session; and contains -- -n $argv
-        # Extract everything after "session" and prepend the extension
-        set -l session_args $argv[2..]
-        command goose session --with-extension "uvx mcp-server-fetch" $session_args
-    else
-        command goose $argv
+    printf "%s" (__fish_git_prompt)
+    if test $last_status -ne 0
+        set_color red
+        printf " [%d]" $last_status
+        set_color normal
     end
+    set_color cyan
+    printf " ➤ "
+    set_color normal
 end
 
-# History settings (Fish handles differently than zsh)
-set -g fish_history_max_size 10000
+# =============================================================================
+# Aliases
+# =============================================================================
 
-# Set up FZF key bindings if available
-if command -v fzf >/dev/null
-    # This will be handled by FZF's fish integration if installed
-end
-
-# Use custom directory colors
-if test -f ~/.config/dircolors/config
-    eval (dircolors -c ~/.config/dircolors/config | sed 's/setenv/set -x/')
-end
-set -gx TERMINAL alacritty
+# Vim alias to nvim
+alias vim='nvim'

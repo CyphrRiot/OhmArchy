@@ -114,8 +114,41 @@ if ! command -v plymouth &>/dev/null; then
     echo ""
   fi
 
-  # Copy and set the Plymouth theme
-  sudo cp -r "$HOME/.local/share/omarchy/default/plymouth" /usr/share/plymouth/themes/omarchy/
+  # Copy and set the Plymouth theme (preserve custom logo if it exists)
+  PLYMOUTH_THEME_DIR="/usr/share/plymouth/themes/omarchy"
+  CUSTOM_LOGO="$PLYMOUTH_THEME_DIR/logo.png"
+  TEMP_LOGO="/tmp/custom_logo_backup.png"
+
+  # Backup existing custom logo if it exists and differs from default
+  if [ -f "$CUSTOM_LOGO" ]; then
+    DEFAULT_LOGO="$HOME/.local/share/omarchy/default/plymouth/logo.png"
+    if [ -f "$DEFAULT_LOGO" ] && ! cmp -s "$CUSTOM_LOGO" "$DEFAULT_LOGO"; then
+      echo "✓ Backing up custom Plymouth logo"
+      sudo cp "$CUSTOM_LOGO" "$TEMP_LOGO"
+    fi
+  fi
+
+  # Copy Plymouth theme
+  sudo cp -r "$HOME/.local/share/omarchy/default/plymouth" "$PLYMOUTH_THEME_DIR/"
+
+  # Restore custom logo if we backed it up
+  if [ -f "$TEMP_LOGO" ]; then
+    echo "✓ Restoring custom Plymouth logo"
+    sudo cp "$TEMP_LOGO" "$CUSTOM_LOGO"
+    rm -f "$TEMP_LOGO"
+  fi
+
+  # Check for persistent custom logo backup from generate-boot-logo.sh
+  PERSISTENT_BACKUP_DIR="$HOME/.config/omarchy/plymouth-backup"
+  PERSISTENT_LOGO="$PERSISTENT_BACKUP_DIR/custom_logo.png"
+
+  if [ -f "$PERSISTENT_LOGO" ] && [ -f "$PERSISTENT_BACKUP_DIR/backup_info.txt" ]; then
+    echo "✓ Found persistent custom logo backup, restoring..."
+    sudo cp "$PERSISTENT_LOGO" "$CUSTOM_LOGO"
+    sudo chown root:root "$CUSTOM_LOGO"
+    sudo chmod 644 "$CUSTOM_LOGO"
+    echo "✓ Custom ASCII logo restored from persistent backup"
+  fi
 
   sudo plymouth-set-default-theme -R omarchy
 fi

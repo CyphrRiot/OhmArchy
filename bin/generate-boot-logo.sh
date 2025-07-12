@@ -144,6 +144,16 @@ else
     echo -e "${YELLOW}⚠ Plymouth not available, logo installed but theme not activated${NC}"
 fi
 
+# Create marker file to indicate custom logo is installed
+echo "custom_ascii_logo_installed=$(date)" | sudo tee "$PLYMOUTH_THEME_DIR/.custom_logo_marker" > /dev/null
+sudo chmod 644 "$PLYMOUTH_THEME_DIR/.custom_logo_marker"
+
+# Create persistent backup for re-installations
+PERSISTENT_BACKUP_DIR="$HOME/.config/omarchy/plymouth-backup"
+mkdir -p "$PERSISTENT_BACKUP_DIR"
+cp "$PLYMOUTH_THEME_DIR/logo.png" "$PERSISTENT_BACKUP_DIR/custom_logo.png"
+echo "custom_logo_backup_created=$(date)" > "$PERSISTENT_BACKUP_DIR/backup_info.txt"
+
 # Cleanup
 rm -f /tmp/ascii_art.txt "$TEMP_LOGO"
 
@@ -152,8 +162,13 @@ echo ""
 echo -e "${BLUE}The ASCII art logo has been installed for your LUKS/boot screen.${NC}"
 echo -e "${BLUE}You'll see it on next reboot during disk decryption.${NC}"
 echo ""
+echo -e "${GREEN}✓ Custom logo backup created at: $PERSISTENT_BACKUP_DIR/custom_logo.png${NC}"
+echo -e "${GREEN}✓ This logo will be preserved during OhmArchy re-installations${NC}"
+echo ""
 echo -e "${YELLOW}To test the Plymouth theme without rebooting:${NC}"
 echo -e "${YELLOW}  sudo plymouthd --debug --debug-file=/tmp/plymouth.log${NC}"
 echo -e "${YELLOW}  sudo plymouth --show-splash${NC}"
 echo -e "${YELLOW}  # Press Ctrl+Alt+F2 to see it, then:${NC}"
 echo -e "${YELLOW}  sudo plymouth --quit${NC}"
+echo ""
+echo -e "${BLUE}NOTE: Your custom ASCII logo will survive OhmArchy re-installations!${NC}"

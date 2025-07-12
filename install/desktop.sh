@@ -7,7 +7,7 @@ packages=(
     "hyprsunset gnome-keyring"
     "brave-bin mpv evince imv"
     "localsend-bin mullvad-vpn-bin"
-    "fuzzel nwg-drawer swaync"
+    "nwg-drawer swaync"
 )
 
 for package_group in "${packages[@]}"; do

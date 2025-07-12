@@ -98,14 +98,7 @@
 	"tooltip-format": "󰷛 Screen Lock",
 },
 
-"custom/menu": {
-	"format": "  ",
-	"on-click": "fuzzel",
-	"on-click-middle": "$HOME/.config/hypr/UserScripts/WallpaperSelect.sh",
-	"on-click-right": "$HOME/.config/hypr/scripts/WaybarLayout.sh",
-	"tooltip": true,
-	"tooltip-format": "Left Click: Fuzzel Menu\nMiddle Click: Wallpaper Menu\nRight Click: Waybar Layout Menu",
-},
+
 // This is a custom cava visualizer
 "custom/cava_mviz": {
 	"exec": "$HOME/.config/hypr/scripts/WaybarCava.sh",

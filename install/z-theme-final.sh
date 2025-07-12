@@ -2,7 +2,19 @@
 sudo pacman -S --noconfirm kvantum-qt5
 
 # Install Bibata Modern Ice cursor theme and Obsidian icon theme
-yay -S --noconfirm --needed bibata-cursor-theme
+echo "Installing cursor and icon themes..."
+if ! yay -S --noconfirm --needed bibata-cursor-theme; then
+    echo "❌ CRITICAL: Failed to install bibata-cursor-theme"
+    exit 1
+fi
+
+# Verify cursor theme installation
+if [ ! -d "/usr/share/icons/Bibata-Modern-Ice" ] && [ ! -d "$HOME/.local/share/icons/Bibata-Modern-Ice" ]; then
+    echo "❌ CRITICAL: Bibata-Modern-Ice cursor theme not found after installation"
+    exit 1
+fi
+echo "✓ Bibata cursor theme installed successfully"
+
 sudo pacman -S --noconfirm --needed obsidian-icon-theme
 
 # Prefer dark mode everything
@@ -13,13 +25,32 @@ gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"
 # Setup icon theme (Obsidian for beautiful file manager icons)
 gsettings set org.gnome.desktop.interface icon-theme "Obsidian"
 
-# Setup cursor theme
-gsettings set org.gnome.desktop.interface cursor-theme "Bibata-Modern-Ice"
-gsettings set org.gnome.desktop.interface cursor-size 24
+# Setup cursor theme with validation
+echo "Configuring cursor theme..."
+if command -v gsettings >/dev/null 2>&1; then
+    gsettings set org.gnome.desktop.interface cursor-theme "Bibata-Modern-Ice"
+    gsettings set org.gnome.desktop.interface cursor-size 24
+    echo "✓ Cursor theme configured via gsettings"
+else
+    echo "⚠ gsettings not available, cursor theme will be handled by Hyprland env vars"
+fi
 
 # Setup default cursor theme links
 mkdir -p ~/.icons/default
-cp ~/.local/share/omarchy/default/icons/default/index.theme ~/.icons/default/index.theme
+if [ -f ~/.local/share/omarchy/default/icons/default/index.theme ]; then
+    cp ~/.local/share/omarchy/default/icons/default/index.theme ~/.icons/default/index.theme
+    echo "✓ Default cursor theme links created"
+else
+    echo "⚠ Default cursor theme index file not found"
+fi
+
+# Verify cursor theme is accessible
+if [ -d "/usr/share/icons/Bibata-Modern-Ice" ] || [ -d "$HOME/.local/share/icons/Bibata-Modern-Ice" ] || [ -d "$HOME/.icons/Bibata-Modern-Ice" ]; then
+    echo "✓ Bibata-Modern-Ice cursor theme is accessible"
+else
+    echo "❌ CRITICAL: Bibata-Modern-Ice cursor theme not accessible"
+    exit 1
+fi
 
 # Setup theme links
 mkdir -p ~/.config/omarchy/themes

@@ -19,7 +19,7 @@ function fish_greeting
         echo "Welcome to OhmArchy!"
         echo "System: $(uname -s) $(uname -r)"
     end
-    
+
     set_color cyan
     echo "🐧 Welcome to OhmArchy"
     set_color normal
@@ -27,15 +27,18 @@ end
 
 # Useful aliases
 alias l='ls -l'
-alias la='ls -a' 
+alias la='ls -a'
 alias lla='ls -la'
 alias ls='eza'  # Use eza instead of ls for better output
 alias ll='eza -l'
 alias tree='eza --tree'
+alias cd='z'    # Use zoxide for smart directory jumping
 
 # Development aliases
 alias vim='nvim'
 alias cat='bat'  # Use bat for syntax highlighting
+alias find='fd'  # Use fd for faster file finding
+alias grep='rg'  # Use ripgrep for faster searching
 
 # Git aliases
 alias gs='git status'
@@ -65,13 +68,18 @@ if command -v fzf > /dev/null
     set -x FZF_DEFAULT_OPTS '--height 40% --layout=reverse --border'
 end
 
+# Initialize zoxide for smart directory jumping
+if command -v zoxide > /dev/null
+    zoxide init fish | source
+end
+
 # Use custom directory colors if available
 if test -f ~/.config/dircolors/config
     eval (dircolors -c ~/.config/dircolors/config | sed 's/setenv/set -x/')
 end
 
 # Default terminal
-set -gx TERMINAL alacritty
+set -gx TERMINAL kitty
 
 # Editor settings
 set -gx EDITOR nvim

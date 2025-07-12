@@ -6,7 +6,7 @@ packages=(
     "thunar sushi ffmpegthumbnailer gnome-calculator"
     "hyprsunset gnome-keyring"
     "brave-bin mpv evince imv"
-    "localsend-bin mullvad-vpn-bin"
+    "mullvad-vpn-bin"
     "nwg-drawer swaync"
 )
 

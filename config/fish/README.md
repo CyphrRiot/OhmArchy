@@ -9,8 +9,10 @@ This directory contains the default Fish shell configuration for OhmArchy.
 - **Auto-start Hyprland**: Automatically starts Hyprland on TTY1
 - **Enhanced Aliases**: Useful aliases for development and daily use
 - **Modern Tools**: Uses `eza` instead of `ls`, `bat` instead of `cat`, `nvim` instead of `vim`
+- **Smart Navigation**: Zoxide integration for intelligent directory jumping
 - **Git Integration**: Common git aliases for faster workflow
 - **FZF Integration**: Enhanced fuzzy finding if FZF is installed
+- **Cursor Theme**: Bibata-Modern-Ice cursor configuration
 
 ## Installation
 
@@ -21,26 +23,38 @@ This configuration is automatically installed when running the OhmArchy installa
 ```
 
 The script will:
+
 1. Install Fish shell and related tools
 2. Copy the default configuration to `~/.config/fish/config.fish`
 3. Set Fish as the default shell
+4. Verify configuration loads without errors
+5. Set up Fish completions directory
 
 ## Key Features
 
 ### Environment Variables
+
 - `GOOSE_DISABLE_KEYRING=1` - Prevents keyring-related issues with Goose
 - `EDITOR=nvim` - Sets Neovim as the default editor
-- `TERMINAL=alacritty` - Sets Alacritty as the default terminal
+- `TERMINAL=kitty` - Sets Kitty as the default terminal
+- `XCURSOR_THEME=Bibata-Modern-Ice` - Beautiful cursor theme
 
 ### Aliases
+
 - `ls` → `eza` (better file listing)
 - `cat` → `bat` (syntax highlighting)
 - `vim` → `nvim` (modern Vim)
+- `cd` → `z` (smart directory jumping with zoxide)
+- `find` → `fd` (faster file finding)
+- `grep` → `rg` (faster searching with ripgrep)
 - Git shortcuts: `gs`, `ga`, `gc`, `gp`, `gl`, `gd`
 
-### Functions
+### Functions & Integrations
+
 - **Enhanced Goose**: Automatic MCP server extension for better session handling
 - **Custom Greeting**: Shows system info with Arch logo using fastfetch
+- **Zoxide Integration**: Automatic initialization for smart directory jumping
+- **FZF Integration**: Enhanced fuzzy finding with custom options
 
 ## Customization
 

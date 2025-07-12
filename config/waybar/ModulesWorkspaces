@@ -93,9 +93,9 @@
 		"2": "Due ",
 		"3": "Tre ",
 		"4": "Quattro ",
-	}	
+	}
   },
-  
+
 //  NUMBERS and ICONS style
 "hyprland/workspaces#4": {
 	"format": "{name} ",
@@ -135,7 +135,7 @@
 		"4": "4 ",
 	},
 },
-// NUMBERS and ICONS style with window rewrite 
+// NUMBERS and ICONS style with window rewrite
 "hyprland/workspaces#rw": {
 	"disable-scroll": true,
 	"all-outputs": true,
@@ -146,7 +146,7 @@
 	"on-scroll-up": "hyprctl dispatch workspace e+1 ",
 	"on-scroll-down": "hyprctl dispatch workspace e-1 ",
 	"persistent-workspaces": {
-		"1": [], 
+		"1": [],
 		"2": [],
 		"3": [],
 		"4": []
@@ -163,7 +163,7 @@
 	},
 	"format-window-separator": "",
 		"window-rewrite-default": " ",
-	"window-rewrite": {		
+	"window-rewrite": {
 		"title<.*amazon.*>": " ",
 		"title<.*reddit.*>": " ",
 
@@ -252,13 +252,13 @@
 		"class<nwg-look>": " ",
 		"class<[Pp]avucontrol|org.pulseaudio.pavucontrol>": "󱡫 ",
 		"class<steam>": " ",
-		"class<thunar|nemo>": "󰝰 ",	
+		"class<thunar|nemo>": "󰝰 ",
     "class<Gparted>":"",
 		"class<gimp>": " ",
 		"class<emulator>": "📱 ",
 		"class<android-studio>": " ",
    	"class<org.pipewire.Helvum>": "󰓃 ",
-    "class<localsend>":"",
+
     "class<PrusaSlicer|UltiMaker-Cura|OrcaSlicer>": "󰹛 ",
 		"class<ghostwriter|org.kde.ghostwriter>": "󰷈 ",
 		"class<org.gnome.TextEditor>": "󰷈 ",

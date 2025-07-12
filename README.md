@@ -178,6 +178,7 @@ OhmArchy includes multiple themes with CypherRiot as the default:
 - **Brave browser** - Ad blocking, privacy protection by default
 - **Proton Mail** - End-to-end encrypted email with XF86Mail key support
 - **Mullvad VPN** - Anonymous browsing with live waybar status indicator
+- **Feather Wallet** - Privacy-focused Monero wallet for secure cryptocurrency transactions
 - **Local tools** - Reduced dependency on cloud services
 - **Clean telemetry** - Minimal data collection
 

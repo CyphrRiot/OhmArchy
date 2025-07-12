@@ -18,14 +18,16 @@ critical_packages=(
     "hyprsunset gnome-keyring"
     "nwg-drawer swaync"
     "brave-bin"
+    "mpv"
+    "evince"
+    "imv"
+    "mullvad-vpn-bin"
 )
 
 # Define optional packages that can fail
 optional_packages=(
     "fcitx5 fcitx5-gtk fcitx5-qt fcitx5-configtool"
     "wl-clip-persist"
-    "mpv evince imv"
-    "mullvad-vpn-bin"
 )
 
 # Install critical packages - failure stops installation

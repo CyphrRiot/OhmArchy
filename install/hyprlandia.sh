@@ -3,17 +3,22 @@ critical_packages=(
     "hyprland"
     "waybar"
     "xdg-desktop-portal-hyprland"
+    "xdg-desktop-portal-gtk"
     "polkit-gnome"
     "wofi"
+    "mako"
+    "swaybg"
+    "hyprlock"
+    "hypridle"
+    "grim"
+    "slurp"
 )
 
 # Define optional Hyprland packages that can fail
 optional_packages=(
-    "hyprshot hyprpicker hyprlock hypridle"
+    "hyprshot"
+    "hyprpicker"
     "hyprland-qtutils"
-    "mako swaybg"
-    "xdg-desktop-portal-gtk"
-    "grim slurp"
 )
 
 # Install critical packages - failure stops installation

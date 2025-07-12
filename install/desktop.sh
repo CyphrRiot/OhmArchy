@@ -13,7 +13,8 @@ packages=(
 # Define critical packages that must succeed
 critical_packages=(
     "brightnessctl playerctl pamixer pavucontrol wireplumber"
-    "thunar sushi ffmpegthumbnailer gnome-calculator"
+    "thunar"
+    "sushi ffmpegthumbnailer gnome-calculator"
     "hyprsunset gnome-keyring"
     "nwg-drawer swaync"
     "brave-bin"

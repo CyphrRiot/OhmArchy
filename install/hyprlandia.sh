@@ -12,6 +12,8 @@ critical_packages=(
     "hypridle"
     "grim"
     "slurp"
+    "python"
+    "python-psutil"
 )
 
 # Define optional Hyprland packages that can fail

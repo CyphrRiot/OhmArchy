@@ -14,16 +14,16 @@ fi
 # Check script dependencies
 echo "Checking Python dependencies for waybar scripts..."
 
-# Ensure pip is available for Python package installation
-if ! command -v pip &> /dev/null; then
-    echo "Installing pip for Python package management..."
-    sudo pacman -S --noconfirm python-pip
-fi
+# Install psutil system package for waybar scripts
+echo "Installing psutil system package for waybar scripts..."
+sudo pacman -S --noconfirm --needed python-psutil
 
-python3 -c "import psutil" 2>/dev/null || {
-    echo "Installing psutil for system monitoring scripts..."
-    pip install --user psutil
-}
+# Verify psutil is available
+if ! python3 -c "import psutil" 2>/dev/null; then
+    echo "❌ CRITICAL: psutil installation failed - waybar scripts will not work"
+    exit 1
+fi
+echo "✓ psutil installed and verified"
 
 # Copy over Omarchy configs
 cp -R ~/.local/share/omarchy/config/* ~/.config/

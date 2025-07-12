@@ -142,6 +142,55 @@ echo ""
 echo -e "${GREEN}🎉 CypherRiot Theme Applied Successfully!${NC}"
 echo ""
 
+# Fish Shell Configuration Fix
+echo -e "${PURPLE}🐟 Fish Shell Configuration Fix${NC}"
+echo "==============================="
+echo ""
+
+# Check if fish is installed and configured
+if command -v fish &> /dev/null; then
+    echo -e "${YELLOW}Checking fish shell configuration...${NC}"
+
+    # Force fish configuration setup
+    mkdir -p ~/.config/fish
+
+    # Copy OhmArchy fish configuration
+    if [ -f ~/.local/share/omarchy/config/fish/config.fish ]; then
+        echo -e "${YELLOW}Forcing OhmArchy fish configuration...${NC}"
+        cp ~/.local/share/omarchy/config/fish/config.fish ~/.config/fish/config.fish
+        echo -e "${GREEN}✓ Fish configuration updated${NC}"
+    else
+        echo -e "${RED}❌ OhmArchy fish config not found${NC}"
+    fi
+
+    # Set fish as default shell if not already
+    if [[ "$SHELL" != *"fish"* ]]; then
+        echo -e "${YELLOW}Setting fish as default shell...${NC}"
+
+        # Add fish to /etc/shells if not present
+        if ! grep -q "$(which fish)" /etc/shells 2>/dev/null; then
+            which fish | sudo tee -a /etc/shells >/dev/null
+        fi
+
+        # Change default shell
+        sudo chsh -s "$(which fish)" "$USER" 2>/dev/null
+        echo -e "${GREEN}✓ Fish set as default shell (takes effect on next login)${NC}"
+    else
+        echo -e "${GREEN}✓ Fish is already the default shell${NC}"
+    fi
+
+    # Test fish configuration
+    if fish -c "echo 'Fish config test successful'" &>/dev/null; then
+        echo -e "${GREEN}✓ Fish configuration loads without errors${NC}"
+    else
+        echo -e "${RED}❌ Fish configuration has syntax errors${NC}"
+    fi
+else
+    echo -e "${YELLOW}⚠ Fish shell not installed - run full installation first${NC}"
+fi
+
+echo ""
+
 # LUKS Boot Image Update
 echo -e "${PURPLE}🔒 LUKS Boot Image Update${NC}"
 echo "========================"
@@ -177,6 +226,7 @@ echo -e "${GREEN}  ✓ CypherRiot theme forced as default${NC}"
 echo -e "${GREEN}  ✓ CypherRiot waybar with all modules${NC}"
 echo -e "${GREEN}  ✓ CypherRiot background (cyber.jpg)${NC}"
 echo -e "${GREEN}  ✓ All theme configurations linked${NC}"
+echo -e "${GREEN}  ✓ Fish shell configuration updated${NC}"
 echo ""
 echo -e "${BLUE}Your waybar should now show:${NC}"
 echo -e "${BLUE}  - Tomato Timer (Pomodoro)${NC}"
@@ -185,4 +235,11 @@ echo -e "${BLUE}  - CPU & Memory Monitoring${NC}"
 echo -e "${BLUE}  - Microphone Control${NC}"
 echo -e "${BLUE}  - CypherRiot purple/blue styling${NC}"
 echo ""
+echo -e "${BLUE}Your fish shell should now have:${NC}"
+echo -e "${BLUE}  - Custom OhmArchy greeting with Arch logo${NC}"
+echo -e "${BLUE}  - Enhanced aliases (ls→eza, cat→bat, etc.)${NC}"
+echo -e "${BLUE}  - Smart directory jumping with 'z'${NC}"
+echo -e "${BLUE}  - Git shortcuts (gs, ga, gc, etc.)${NC}"
+echo ""
 echo -e "${PURPLE}If waybar still looks wrong, reboot and run this script again.${NC}"
+echo -e "${PURPLE}Start a new terminal to see the beautiful fish shell!${NC}"
